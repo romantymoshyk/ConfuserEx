@@ -117,64 +117,142 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="InvalidPathSyntax" xml:space="preserve">
-    <value>The syntax is of the path is invalid.
-{0}&lt;ERROR&gt;{1}</value>
+  <data name="InvalidMetadataProtectionName" xml:space="preserve">
+    <value>无效的元数据保护</value>
   </data>
-  <data name="UnmatchedBracket" xml:space="preserve">
-    <value>Unmatched brackets.
-{0}</value>
+  <data name="InvalidMetadataProtectionDescription" xml:space="preserve">
+    <value>此保护将无效的元数据添加到模块中，以防止反汇编程序/反编译器打开它们。</value>
   </data>
-  <data name="UnmatchedParen" xml:space="preserve">
-    <value>Unmatched parenthesis.
-{0}</value>
+  <data name="InvalidMetadataProtectionInvalidMDPhaseName" xml:space="preserve">
+    <value>添加无效的元数据</value>
   </data>
-  <data name="ResourceAnalyzer_Analyze_CouldNotFindResourceType" xml:space="preserve">
-    <value>Could not find backing code for resource type '{0}', protections may not apply to that type.</value>
+  <data name="AntiILDasmProtectionDescription" xml:space="preserve">
+    <value>将模块标记一个属性，以阻止ILDASM对其进行反编译。</value>
   </data>
-  <data name="ReflectionAnalyzer_Analyze_TracingArgumentsFailed" xml:space="preserve">
-    <value>Tracing arguments for {0} call in {1} failed. What ever member is referenced here by reflection won't be properly handled by the name obfuscation.</value>
+  <data name="AntiDumpProtectionName" xml:space="preserve">
+    <value>内存转储保护</value>
   </data>
-  <data name="AnalyzePhase_Name_Name_analysis" xml:space="preserve">
-    <value>Name analysis</value>
+  <data name="HardeningPhaseName" xml:space="preserve">
+    <value>强化阶段</value>
   </data>
-  <data name="AnalyzePhaseAnalyzingText" xml:space="preserve">
-    <value>Analyzing...</value>
+  <data name="AntiILDasmPhaseName" xml:space="preserve">
+    <value>防ILDasm标记</value>
   </data>
-  <data name="NameProtectionDescription" xml:space="preserve">
-    <value>This protection obfuscate the symbols' name so the decompiled source code can neither be compiled nor read.</value>
+  <data name="HardeningProtectionName" xml:space="preserve">
+    <value>保护加强</value>
   </data>
-  <data name="NameProtectionName" xml:space="preserve">
-    <value>Name Protection</value>
+  <data name="HardeningProtectionDescription" xml:space="preserve">
+    <value>该组件改进了保护代码，使其难以规避。</value>
   </data>
-  <data name="NameProtectionExportMapPhaseName" xml:space="preserve">
-    <value>Export symbol map</value>
+  <data name="AntiDumpProtectionDescription" xml:space="preserve">
+    <value>此保护可防止程序集从内存中转储。</value>
   </data>
-  <data name="RenamePhaseName" xml:space="preserve">
-    <value>Renaming</value>
+  <data name="AntiDebugProtectionName" xml:space="preserve">
+    <value>反调试保护</value>
   </data>
-  <data name="RenamePhaseRenamingText" xml:space="preserve">
-    <value>Renaming...</value>
+  <data name="AntiDebugProtectionDescription" xml:space="preserve">
+    <value>此保护可防止对程序集进行调试或分析。</value>
   </data>
-  <data name="AnalyzePhase_Execute_Building_VTables" xml:space="preserve">
-    <value>Building VTables &amp; identifier list...</value>
+  <data name="AntiDebugProtectionAntiDebugPhaseName" xml:space="preserve">
+    <value>反调试注入</value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_WPF_found" xml:space="preserve">
-    <value>WPF found, enabling compatibility.</value>
+  <data name="MDPhase_EncryptingResourcesText" xml:space="preserve">
+    <value>正在加密资源...</value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_Caliburn_Micro_found" xml:space="preserve">
-    <value>Caliburn.Micro found, enabling compatibility.</value>
+  <data name="AntiTamperProtectionName" xml:space="preserve">
+    <value>防篡改保护</value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_WinForms_found" xml:space="preserve">
-    <value>WinForms found, enabling compatibility.</value>
+  <data name="AntiTamperProtectionDescription" xml:space="preserve">
+    <value>确保应用程序的完整性，防止窜改程序集。</value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_Newtonsoft_Json_found" xml:space="preserve">
-    <value>Newtonsoft.Json found, enabling compatibility.</value>
+  <data name="AntiTamperProtectionInjectPhaseName" xml:space="preserve">
+    <value>防篡改保护注入</value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_Visual_Basic_Embedded_Runtime_found" xml:space="preserve">
-    <value>Visual Basic Embedded Runtime found, enabling compatibility.</value>
+  <data name="StubProtectionName" xml:space="preserve">
+    <value>压缩打包程序保护</value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_Visual_Studio_Composition_found" xml:space="preserve">
-    <value>Visual Studio Composition found, enabling compatibility.</value>
+  <data name="StubProtectionDescription" xml:space="preserve">
+    <value>在受保护的存根上做一些额外的工作。</value>
+  </data>
+  <data name="StubProtectionInjPhaseName" xml:space="preserve">
+    <value>模块注入</value>
+  </data>
+  <data name="StubProtectionSigPhaseName" xml:space="preserve">
+    <value>打包程序信息编码</value>
+  </data>
+  <data name="ConstantProtectionName" xml:space="preserve">
+    <value>常量保护</value>
+  </data>
+  <data name="ConstantProtectionDescription" xml:space="preserve">
+    <value>在代码中编码和压缩常量。</value>
+  </data>
+  <data name="ControlFlowProtectionName" xml:space="preserve">
+    <value>流程控制保护</value>
+  </data>
+  <data name="ControlFlowProtectionDescription" xml:space="preserve">
+    <value>这种保护会破坏方法中的代码，以便反编译器无法反编译方法。</value>
+  </data>
+  <data name="ReferenceProxyProtectionName" xml:space="preserve">
+    <value>引用代理保护</value>
+  </data>
+  <data name="ReferenceProxyProtectionDescription" xml:space="preserve">
+    <value>对类型/方法/字段进行编码并隐藏引用。</value>
+  </data>
+  <data name="ResourceProtectionName" xml:space="preserve">
+    <value>资源保护</value>
+  </data>
+  <data name="ResourceProtectionDescription" xml:space="preserve">
+    <value>此保护可对嵌入式资源进行编码和压缩。</value>
+  </data>
+  <data name="TypeScrambleProtectionName" xml:space="preserve">
+    <value>类型加扰器</value>
+  </data>
+  <data name="TypeScrambleProtectionDescription" xml:space="preserve">
+    <value>用泛型替换类型</value>
+  </data>
+  <data name="ScramblePhaseName" xml:space="preserve">
+    <value>类型加扰器</value>
+  </data>
+  <data name="AnalyzePhaseName" xml:space="preserve">
+    <value>类型扫描</value>
+  </data>
+  <data name="InjectPhaseName" xml:space="preserve">
+    <value>资源加密注入</value>
+  </data>
+  <data name="ReferenceProxyPhaseName" xml:space="preserve">
+    <value>编码引用代理</value>
+  </data>
+  <data name="ControlFlowPhaseName" xml:space="preserve">
+    <value>控制流处理</value>
+  </data>
+  <data name="InjectPhaseConstantName" xml:space="preserve">
+    <value>常量加密注入</value>
+  </data>
+  <data name="EncodePhaseConstantsName" xml:space="preserve">
+    <value>常量编码</value>
+  </data>
+  <data name="ExtractPhaseName" xml:space="preserve">
+    <value>打包信息提取</value>
+  </data>
+  <data name="AntiILDasmProtectionName" xml:space="preserve">
+    <value>抗IL Dasm保护</value>
+  </data>
+  <data name="MDPhase_Name" xml:space="preserve">
+    <value>防篡改元数据</value>
+  </data>
+  <data name="AntiDumpPhase_Name" xml:space="preserve">
+    <value>反内存转储注入</value>
+  </data>
+  <data name="CompressorDescription" xml:space="preserve">
+    <value>此压缩包可以减小输出文件大小。</value>
+  </data>
+  <data name="CompressorName" xml:space="preserve">
+    <value>压缩打包</value>
+  </data>
+  <data name="Compressor_Pack_No_executable_module" xml:space="preserve">
+    <value>没有可执行模块！</value>
+  </data>
+  <data name="Compressor_InjectStub_Encrypting_modules" xml:space="preserve">
+    <value>加密模块中...</value>
   </data>
 </root>

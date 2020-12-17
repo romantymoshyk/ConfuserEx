@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Confuser.Core;
+using Confuser.Renamer.Properties;
 using dnlib.DotNet;
 using dnlib.DotNet.Pdb;
 
@@ -16,13 +17,13 @@ namespace Confuser.Renamer {
 		}
 
 		public override string Name {
-			get { return "Renaming"; }
+			get { return Resources.RenamePhaseName; }
 		}
 
 		protected override void Execute(ConfuserContext context, ProtectionParameters parameters) {
 			var service = (NameService)context.Registry.GetService<INameService>();
 
-			context.Logger.Debug("Renaming...");
+			context.Logger.Debug(Resources.RenamePhaseRenamingText);
 			foreach (IRenamer renamer in service.Renamers) {
 				foreach (IDnlibDef def in parameters.Targets)
 					renamer.PreRename(context, service, parameters, def);

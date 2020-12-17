@@ -2,7 +2,7 @@
 using System.IO;
 
 namespace Confuser.Runtime {
-	internal static class Lzma {
+	public static class Lzma {
 		const uint kNumStates = 12;
 
 		const int kNumPosSlotBits = 6;

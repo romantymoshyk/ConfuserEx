@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Confuser.Core.Project;
+using ConfuserEx.Properties;
 using ConfuserEx.Views;
 using GalaSoft.MvvmLight.CommandWpf;
 using Ookii.Dialogs.Wpf;
@@ -12,7 +13,7 @@ using Ookii.Dialogs.Wpf;
 namespace ConfuserEx.ViewModel {
 	public class ProjectTabVM : TabViewModel {
 		public ProjectTabVM(AppVM app)
-			: base(app, "Project") { }
+			: base(app, Resources.ProjectTabHeaderText) { }
 
 		public ICommand DragDrop {
 			get {

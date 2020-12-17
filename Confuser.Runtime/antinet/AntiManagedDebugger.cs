@@ -22,7 +22,7 @@ namespace Confuser.Runtime {
 	// If a debugger is attached before this code is executed, the process could hang at
 	// some later time when this process is trying to send a debug message to the debugger.
 	// Clearing the debug flag could possibly solve this if you don't want it to hang.
-	static partial class AntiDebugAntinet {
+	public static partial class AntiDebugAntinet {
 
 		[DllImport("kernel32", CharSet = CharSet.Auto)]
 		private static extern uint GetCurrentProcessId();
@@ -34,7 +34,7 @@ namespace Confuser.Runtime {
 		///     Must be called to initialize anti-managed debugger code
 		/// </summary>
 		/// <returns><c>true</c> if successful, <c>false</c> otherwise</returns>
-		private static unsafe bool InitializeAntiDebugger() {
+		public static unsafe bool InitializeAntiDebugger() {
 			Info info = GetInfo();
 			IntPtr pDebuggerRCThread = FindDebuggerRCThreadAddress(info);
 			if (pDebuggerRCThread == IntPtr.Zero)

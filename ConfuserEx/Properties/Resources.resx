@@ -117,64 +117,157 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="InvalidPathSyntax" xml:space="preserve">
-    <value>The syntax is of the path is invalid.
-{0}&lt;ERROR&gt;{1}</value>
+  <data name="ProjectModuleAssemblyNameLoadingText" xml:space="preserve">
+    <value>Loading...</value>
   </data>
-  <data name="UnmatchedBracket" xml:space="preserve">
-    <value>Unmatched brackets.
-{0}</value>
+  <data name="AboutTabHeaderText" xml:space="preserve">
+    <value>About</value>
   </data>
-  <data name="UnmatchedParen" xml:space="preserve">
-    <value>Unmatched parenthesis.
-{0}</value>
+  <data name="AppPromptSaveMsg" xml:space="preserve">
+    <value>The current project has unsaved changes. Do you want to save them?</value>
   </data>
-  <data name="ResourceAnalyzer_Analyze_CouldNotFindResourceType" xml:space="preserve">
-    <value>Could not find backing code for resource type '{0}', protections may not apply to that type.</value>
+  <data name="AppOpenProjErrorMsg" xml:space="preserve">
+    <value>Invalid project!</value>
   </data>
-  <data name="ReflectionAnalyzer_Analyze_TracingArgumentsFailed" xml:space="preserve">
-    <value>Tracing arguments for {0} call in {1} failed. What ever member is referenced here by reflection won't be properly handled by the name obfuscation.</value>
+  <data name="AppLoadPluginsMsg" xml:space="preserve">
+    <value>Failed to load plugin '</value>
   </data>
-  <data name="AnalyzePhase_Name_Name_analysis" xml:space="preserve">
-    <value>Name analysis</value>
+  <data name="ProjectTabHeaderText" xml:space="preserve">
+    <value>Project</value>
   </data>
-  <data name="AnalyzePhaseAnalyzingText" xml:space="preserve">
-    <value>Analyzing...</value>
+  <data name="ProtectTabHeaderText" xml:space="preserve">
+    <value>Protect!</value>
   </data>
-  <data name="NameProtectionDescription" xml:space="preserve">
-    <value>This protection obfuscate the symbols' name so the decompiled source code can neither be compiled nor read.</value>
+  <data name="SettingsTabHeaderText" xml:space="preserve">
+    <value>Settings</value>
   </data>
-  <data name="NameProtectionName" xml:space="preserve">
-    <value>Name Protection</value>
+  <data name="ProjectTabAdvancedPluginsText" xml:space="preserve">
+    <value>Plugins :</value>
   </data>
-  <data name="NameProtectionExportMapPhaseName" xml:space="preserve">
-    <value>Export symbol map</value>
+  <data name="ProjectTabAdvancedProbePathsText" xml:space="preserve">
+    <value>Probe Paths :</value>
   </data>
-  <data name="RenamePhaseName" xml:space="preserve">
-    <value>Renaming</value>
+  <data name="ProjectModuleAssemblyPathText" xml:space="preserve">
+    <value>Assembly Path:</value>
   </data>
-  <data name="RenamePhaseRenamingText" xml:space="preserve">
-    <value>Renaming...</value>
+  <data name="ProjectModuleSNKeyPathText" xml:space="preserve">
+    <value>Key Path:</value>
   </data>
-  <data name="AnalyzePhase_Execute_Building_VTables" xml:space="preserve">
-    <value>Building VTables &amp; identifier list...</value>
+  <data name="ProjectModuleSNKeyPasswordText" xml:space="preserve">
+    <value>Key Password:</value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_WPF_found" xml:space="preserve">
-    <value>WPF found, enabling compatibility.</value>
+  <data name="ProjectRuleTitle" xml:space="preserve">
+    <value>Edit rule...</value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_Caliburn_Micro_found" xml:space="preserve">
-    <value>Caliburn.Micro found, enabling compatibility.</value>
+  <data name="ProjectTabOutputDirectoryText" xml:space="preserve">
+    <value>Output Directory : </value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_WinForms_found" xml:space="preserve">
-    <value>WinForms found, enabling compatibility.</value>
+  <data name="ProjectTabBaseDirectoryText" xml:space="preserve">
+    <value>Base Directory : </value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_Newtonsoft_Json_found" xml:space="preserve">
-    <value>Newtonsoft.Json found, enabling compatibility.</value>
+  <data name="ProjectTabSeedEmptyPrompt" xml:space="preserve">
+    <value>Leave blank for random seed</value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_Visual_Basic_Embedded_Runtime_found" xml:space="preserve">
-    <value>Visual Basic Embedded Runtime found, enabling compatibility.</value>
+  <data name="ProjectTabSeedText" xml:space="preserve">
+    <value>Seed : </value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_Visual_Studio_Composition_found" xml:space="preserve">
-    <value>Visual Studio Composition found, enabling compatibility.</value>
+  <data name="ProjectTabModulesEmptyPromptText" xml:space="preserve">
+    <value>Drag input modules here</value>
+  </data>
+  <data name="SettingsTabPackerText" xml:space="preserve">
+    <value>Packer : </value>
+  </data>
+  <data name="SettingsTabModulesText" xml:space="preserve">
+    <value>Modules : </value>
+  </data>
+  <data name="SettingsGlobalSettingsText" xml:space="preserve">
+    <value>&lt;Global settings&gt;</value>
+  </data>
+  <data name="ToolBarNewProjectText" xml:space="preserve">
+    <value>New project</value>
+  </data>
+  <data name="ToolBarOpenProjectText" xml:space="preserve">
+    <value>Open project</value>
+  </data>
+  <data name="ToolBarSaveProjectText" xml:space="preserve">
+    <value>Save project</value>
+  </data>
+  <data name="ToolBarStackTraceDecoderText" xml:space="preserve">
+    <value>Stack Trace Decoder</value>
+  </data>
+  <data name="StackTraceDecoderTitle" xml:space="preserve">
+    <value>Stack Trace Decoder</value>
+  </data>
+  <data name="ToolBarToolsText" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="ProjectTabGenerateDebugSymbolsText" xml:space="preserve">
+    <value>Generate Debug Symbols</value>
+  </data>
+  <data name="ProjectTabAdvancedTitle" xml:space="preserve">
+    <value>Advanced Settings...</value>
+  </data>
+  <data name="SettingsTabRulesText" xml:space="preserve">
+    <value>Rules : </value>
+  </data>
+  <data name="ProtectTabProtectText" xml:space="preserve">
+    <value>Protect!</value>
+  </data>
+  <data name="ProtectTabCancelText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="StackTraceDecoderSymbolMapText" xml:space="preserve">
+    <value>Symbol Map</value>
+  </data>
+  <data name="StackTraceDecoderPasswordText" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="StackTraceDecoderPassword2Text" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="StackTraceDecoderSymbolMap2Text" xml:space="preserve">
+    <value>Symbol Map:</value>
+  </data>
+  <data name="StackTraceDecoderDecodeText" xml:space="preserve">
+    <value>Decode!</value>
+  </data>
+  <data name="WindowsFontFamily" xml:space="preserve">
+    <value>Open Sans</value>
+  </data>
+  <data name="ProjectRulePatternText" xml:space="preserve">
+    <value>Pattern:</value>
+  </data>
+  <data name="ProjectRulePresetText" xml:space="preserve">
+    <value>Preset : </value>
+  </data>
+  <data name="ProjectRuleInheritProtectionsText" xml:space="preserve">
+    <value>Inherit protections</value>
+  </data>
+  <data name="ProjectRuleProtectionsText" xml:space="preserve">
+    <value>Protections:</value>
+  </data>
+  <data name="ProjectRuleDoneText" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="ProtectTabVM_Finish_at_elapsed" xml:space="preserve">
+    <value>at {0}, {1}:{2:d2} elapsed.</value>
+  </data>
+  <data name="ProtectTabVM_Finish_Finished" xml:space="preserve">
+    <value>Finished {0}</value>
+  </data>
+  <data name="ProtectTabVM_Finish_Failed" xml:space="preserve">
+    <value>Failed {0}</value>
+  </data>
+  <data name="ProjectModuleEnhancedStrongNameText" xml:space="preserve">
+    <value>Enhanced Strong Name</value>
+  </data>
+  <data name="ProjectModuleStrongNameText" xml:space="preserve">
+    <value>Strong Name</value>
+  </data>
+  <data name="ProjectModuleDoneText" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="ProjectModuleTitle" xml:space="preserve">
+    <value>Edit module '{0}'...</value>
   </data>
 </root>

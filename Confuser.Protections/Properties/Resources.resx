@@ -117,64 +117,142 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="InvalidPathSyntax" xml:space="preserve">
-    <value>The syntax is of the path is invalid.
-{0}&lt;ERROR&gt;{1}</value>
+  <data name="InvalidMetadataProtectionName" xml:space="preserve">
+    <value>Invalid Metadata Protection</value>
   </data>
-  <data name="UnmatchedBracket" xml:space="preserve">
-    <value>Unmatched brackets.
-{0}</value>
+  <data name="InvalidMetadataProtectionDescription" xml:space="preserve">
+    <value>This protection adds invalid metadata to modules to prevent disassembler/decompiler from opening them.</value>
   </data>
-  <data name="UnmatchedParen" xml:space="preserve">
-    <value>Unmatched parenthesis.
-{0}</value>
+  <data name="InvalidMetadataProtectionInvalidMDPhaseName" xml:space="preserve">
+    <value>Invalid metadata addition</value>
   </data>
-  <data name="ResourceAnalyzer_Analyze_CouldNotFindResourceType" xml:space="preserve">
-    <value>Could not find backing code for resource type '{0}', protections may not apply to that type.</value>
+  <data name="HardeningProtectionName" xml:space="preserve">
+    <value>Protection Hardening</value>
   </data>
-  <data name="ReflectionAnalyzer_Analyze_TracingArgumentsFailed" xml:space="preserve">
-    <value>Tracing arguments for {0} call in {1} failed. What ever member is referenced here by reflection won't be properly handled by the name obfuscation.</value>
+  <data name="AntiILDasmProtectionDescription" xml:space="preserve">
+    <value>This protection marks the module with a attribute that discourage ILDasm from disassembling it.</value>
   </data>
-  <data name="AnalyzePhase_Name_Name_analysis" xml:space="preserve">
-    <value>Name analysis</value>
+  <data name="AntiDumpProtectionName" xml:space="preserve">
+    <value>Hardening Phase</value>
   </data>
-  <data name="AnalyzePhaseAnalyzingText" xml:space="preserve">
-    <value>Analyzing...</value>
+  <data name="HardeningPhaseName" xml:space="preserve">
+    <value>Hardening Phase</value>
   </data>
-  <data name="NameProtectionDescription" xml:space="preserve">
-    <value>This protection obfuscate the symbols' name so the decompiled source code can neither be compiled nor read.</value>
+  <data name="AntiILDasmPhaseName" xml:space="preserve">
+    <value>Anti-ILDasm marking</value>
   </data>
-  <data name="NameProtectionName" xml:space="preserve">
-    <value>Name Protection</value>
+  <data name="HardeningProtectionDescription" xml:space="preserve">
+    <value>This component improves the protection code, making it harder to circumvent it.</value>
   </data>
-  <data name="NameProtectionExportMapPhaseName" xml:space="preserve">
-    <value>Export symbol map</value>
+  <data name="AntiDumpProtectionDescription" xml:space="preserve">
+    <value>This protection prevents the assembly from being dumped from memory.</value>
   </data>
-  <data name="RenamePhaseName" xml:space="preserve">
-    <value>Renaming</value>
+  <data name="AntiDebugProtectionName" xml:space="preserve">
+    <value>Anti Debug Protection</value>
   </data>
-  <data name="RenamePhaseRenamingText" xml:space="preserve">
-    <value>Renaming...</value>
+  <data name="AntiDebugProtectionDescription" xml:space="preserve">
+    <value>This protection prevents the assembly from being debugged or profiled.</value>
   </data>
-  <data name="AnalyzePhase_Execute_Building_VTables" xml:space="preserve">
-    <value>Building VTables &amp; identifier list...</value>
+  <data name="AntiDebugProtectionAntiDebugPhaseName" xml:space="preserve">
+    <value>Anti-debug injection</value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_WPF_found" xml:space="preserve">
-    <value>WPF found, enabling compatibility.</value>
+  <data name="AntiTamperProtectionName" xml:space="preserve">
+    <value>Anti Tamper Protection</value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_Caliburn_Micro_found" xml:space="preserve">
-    <value>Caliburn.Micro found, enabling compatibility.</value>
+  <data name="AntiTamperProtectionDescription" xml:space="preserve">
+    <value>This protection ensures the integrity of application.</value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_WinForms_found" xml:space="preserve">
-    <value>WinForms found, enabling compatibility.</value>
+  <data name="AntiTamperProtectionInjectPhaseName" xml:space="preserve">
+    <value>Anti-tamper helpers injection</value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_Newtonsoft_Json_found" xml:space="preserve">
-    <value>Newtonsoft.Json found, enabling compatibility.</value>
+  <data name="StubProtectionName" xml:space="preserve">
+    <value>Compressor Stub Protection</value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_Visual_Basic_Embedded_Runtime_found" xml:space="preserve">
-    <value>Visual Basic Embedded Runtime found, enabling compatibility.</value>
+  <data name="StubProtectionDescription" xml:space="preserve">
+    <value>Do some extra works on the protected stub.</value>
   </data>
-  <data name="AnalyzePhase_RegisterRenamers_Visual_Studio_Composition_found" xml:space="preserve">
-    <value>Visual Studio Composition found, enabling compatibility.</value>
+  <data name="StubProtectionInjPhaseName" xml:space="preserve">
+    <value>Module injection</value>
+  </data>
+  <data name="StubProtectionSigPhaseName" xml:space="preserve">
+    <value>Packer info encoding</value>
+  </data>
+  <data name="ConstantProtectionName" xml:space="preserve">
+    <value>Constants Protection</value>
+  </data>
+  <data name="ConstantProtectionDescription" xml:space="preserve">
+    <value>This protection encodes and compresses constants in the code.</value>
+  </data>
+  <data name="ControlFlowProtectionName" xml:space="preserve">
+    <value>Control Flow Protection</value>
+  </data>
+  <data name="ControlFlowProtectionDescription" xml:space="preserve">
+    <value>This protection mangles the code in the methods so that decompilers cannot decompile the methods.</value>
+  </data>
+  <data name="ReferenceProxyProtectionName" xml:space="preserve">
+    <value>Reference Proxy Protection</value>
+  </data>
+  <data name="ReferenceProxyProtectionDescription" xml:space="preserve">
+    <value>This protection encodes and hides references to type/method/fields.</value>
+  </data>
+  <data name="ResourceProtectionName" xml:space="preserve">
+    <value>Resources Protection</value>
+  </data>
+  <data name="ResourceProtectionDescription" xml:space="preserve">
+    <value>This protection encodes and compresses the embedded resources.</value>
+  </data>
+  <data name="TypeScrambleProtectionName" xml:space="preserve">
+    <value>Type Scrambler</value>
+  </data>
+  <data name="TypeScrambleProtectionDescription" xml:space="preserve">
+    <value>Replaces types with generics</value>
+  </data>
+  <data name="ScramblePhaseName" xml:space="preserve">
+    <value>Type scrambler</value>
+  </data>
+  <data name="AnalyzePhaseName" xml:space="preserve">
+    <value>Type scanner</value>
+  </data>
+  <data name="MDPhase_EncryptingResourcesText" xml:space="preserve">
+    <value>Encrypting resources...</value>
+  </data>
+  <data name="InjectPhaseName" xml:space="preserve">
+    <value>Resource encryption helpers injection</value>
+  </data>
+  <data name="ReferenceProxyPhaseName" xml:space="preserve">
+    <value>Encoding reference proxies</value>
+  </data>
+  <data name="ControlFlowPhaseName" xml:space="preserve">
+    <value>Control flow mangling</value>
+  </data>
+  <data name="InjectPhaseConstantName" xml:space="preserve">
+    <value>Constant encryption helpers injection</value>
+  </data>
+  <data name="EncodePhaseConstantsName" xml:space="preserve">
+    <value>Constants encoding</value>
+  </data>
+  <data name="ExtractPhaseName" xml:space="preserve">
+    <value>Packer info extraction</value>
+  </data>
+  <data name="AntiILDasmProtectionName" xml:space="preserve">
+    <value>Anti IL Dasm Protection</value>
+  </data>
+  <data name="AntiDumpPhase_Name" xml:space="preserve">
+    <value>Anti-dump injection</value>
+  </data>
+  <data name="MDPhase_Name" xml:space="preserve">
+    <value>Anti-tamper metadata preparation</value>
+  </data>
+  <data name="CompressorName" xml:space="preserve">
+    <value>Compressing Packer</value>
+  </data>
+  <data name="CompressorDescription" xml:space="preserve">
+    <value>This packer reduces the size of output.</value>
+  </data>
+  <data name="Compressor_Pack_No_executable_module" xml:space="preserve">
+    <value>No executable module!</value>
+  </data>
+  <data name="Compressor_InjectStub_Encrypting_modules" xml:space="preserve">
+    <value>Encrypting modules...</value>
   </data>
 </root>
