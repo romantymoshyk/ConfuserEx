@@ -231,9 +231,6 @@
   <data name="StackTraceDecoderDecodeText" xml:space="preserve">
     <value>Decode!</value>
   </data>
-  <data name="WindowsFontFamily" xml:space="preserve">
-    <value>Open Sans</value>
-  </data>
   <data name="ProjectRulePatternText" xml:space="preserve">
     <value>Pattern:</value>
   </data>
@@ -269,5 +266,12 @@
   </data>
   <data name="ProjectModuleTitle" xml:space="preserve">
     <value>Edit module '{0}'...</value>
+  </data>
+  <data name="ProjectTabVM_Remove_Msg" xml:space="preserve">
+    <value>Are you sure to remove selected modules?
+All settings specific to it would be lost!</value>
+  </data>
+  <data name="ProjectTabVM_AddModule_FileMsg" xml:space="preserve">
+    <value>File '{0}' does not exists!</value>
   </data>
 </root>

@@ -163,9 +163,6 @@
   <data name="ConfuserEngine_RunInternal_Error_occured_during_initialization" xml:space="preserve">
     <value>初始化“{0}”时出错。</value>
   </data>
-  <data name="Resources.ConfuserEngine_RunInternal_Error_occured_during_initialization" xml:space="preserve">
-    <value>初始化“{0}”时出错。</value>
-  </data>
   <data name="ConfuserEngine_RunInternal_Building_pipeline" xml:space="preserve">
     <value>正在生成管道...</value>
   </data>

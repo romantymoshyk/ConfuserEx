@@ -231,9 +231,6 @@
   <data name="StackTraceDecoderPasswordText" xml:space="preserve">
     <value>密码</value>
   </data>
-  <data name="WindowsFontFamily" xml:space="preserve">
-    <value>微软雅黑</value>
-  </data>
   <data name="ProjectRulePatternText" xml:space="preserve">
     <value>方案：</value>
   </data>
@@ -269,5 +266,12 @@
   </data>
   <data name="ProjectModuleTitle" xml:space="preserve">
     <value>编辑模块 “{0}”...</value>
+  </data>
+  <data name="ProjectTabVM_Remove_Msg" xml:space="preserve">
+    <value>您确定要删除所选模块吗？
+特定于它的所有设置都将丢失！</value>
+  </data>
+  <data name="ProjectTabVM_AddModule_FileMsg" xml:space="preserve">
+    <value>文件 “{0}” 不存在！</value>
   </data>
 </root>

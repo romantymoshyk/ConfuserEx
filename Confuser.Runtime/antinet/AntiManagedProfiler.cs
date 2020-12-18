@@ -49,14 +49,14 @@ namespace Confuser.Runtime {
 	//  of the named pipe isn't good enough. If we own the named pipe, we know that the attacher
 	//  thread has exited. Once we've patched the thread proc, we don't really need the named
 	//  pipe anymore.
-	public static partial class AntiDebugAntinet {
+	static partial class AntiDebugAntinet {
 
 		private static ProfilerDetector profilerDetector;
 
 		/// <summary>
 		///     Returns <c>true</c> if a profiler was attached, is attaching or detaching.
 		/// </summary>
-		public static bool IsProfilerAttached {
+		private static bool IsProfilerAttached {
 			[HandleProcessCorruptedStateExceptions, SecurityCritical] // Req'd on .NET 4.0
 			get {
 				try {
@@ -90,7 +90,7 @@ namespace Confuser.Runtime {
 		///     be called once per process. I.e., don't call it from every loaded .NET DLL.
 		/// </summary>
 		/// <returns><c>true</c> if successful, <c>false</c> otherwise</returns>
-		public static bool InitializeAntiProfiler() {
+		private static bool InitializeAntiProfiler() {
 			profilerDetector = CreateProfilerDetector();
 			return profilerDetector.Init();
 		}

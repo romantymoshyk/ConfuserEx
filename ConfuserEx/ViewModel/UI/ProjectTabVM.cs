@@ -73,7 +73,7 @@ namespace ConfuserEx.ViewModel {
 			get {
 				return new RelayCommand(() => {
 					Debug.Assert(App.Project.Modules.Any(m => m.IsSelected));
-					string msg = "Are you sure to remove selected modules?\r\nAll settings specific to it would be lost!";
+					string msg = Resources.ProjectTabVM_Remove_Msg;
 					if (MessageBox.Show(msg, "ConfuserEx", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes) {
 						foreach (var item in App.Project.Modules.Where(m => m.IsSelected).ToList())
 							App.Project.Modules.Remove(item);
@@ -108,7 +108,7 @@ namespace ConfuserEx.ViewModel {
 
 		void AddModule(string file) {
 			if (!File.Exists(file)) {
-				MessageBox.Show(string.Format("File '{0}' does not exists!", file), "ConfuserEx", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(string.Format(Resources.ProjectTabVM_AddModule_FileMsg, file), "ConfuserEx", MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
 			}
 			if (string.IsNullOrEmpty(App.Project.BaseDirectory)) {

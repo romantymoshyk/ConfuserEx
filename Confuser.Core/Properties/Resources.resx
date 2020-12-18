@@ -192,9 +192,6 @@
   <data name="ConfuserEngine_PrintEnvironmentInfo_Cached_assemblies" xml:space="preserve">
     <value>Cached assemblies:</value>
   </data>
-  <data name="Resources.ConfuserEngine_RunInternal_Error_occured_during_initialization" xml:space="preserve">
-    <value>Error occured during initialization of '{0}'.</value>
-  </data>
   <data name="WatermarkingPhase_Execute_Watermarking" xml:space="preserve">
     <value>Watermarking...</value>
   </data>

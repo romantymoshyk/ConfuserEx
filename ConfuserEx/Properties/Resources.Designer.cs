@@ -313,6 +313,25 @@ namespace ConfuserEx.Properties {
         }
         
         /// <summary>
+        ///   查找类似 File &apos;{0}&apos; does not exists! 的本地化字符串。
+        /// </summary>
+        public static string ProjectTabVM_AddModule_FileMsg {
+            get {
+                return ResourceManager.GetString("ProjectTabVM_AddModule_FileMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Are you sure to remove selected modules?
+        ///All settings specific to it would be lost! 的本地化字符串。
+        /// </summary>
+        public static string ProjectTabVM_Remove_Msg {
+            get {
+                return ResourceManager.GetString("ProjectTabVM_Remove_Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Cancel 的本地化字符串。
         /// </summary>
         public static string ProtectTabCancelText {
@@ -507,15 +526,6 @@ namespace ConfuserEx.Properties {
         public static string ToolBarToolsText {
             get {
                 return ResourceManager.GetString("ToolBarToolsText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Open Sans 的本地化字符串。
-        /// </summary>
-        public static string WindowsFontFamily {
-            get {
-                return ResourceManager.GetString("WindowsFontFamily", resourceCulture);
             }
         }
     }

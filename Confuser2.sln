@@ -96,6 +96,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IncorrectRedirectToGac", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IncorrectRedirectToGac.Test", "Tests\IncorrectRedirectToGac.Test\IncorrectRedirectToGac.Test.csproj", "{B7FF0EE8-6C68-46C6-AADB-58C0E3309FB2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfuserEx.Additions", "Additions\ConfuserEx.Additions.csproj", "{42BB137B-6398-46A9-ABA5-B71D64E05AA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -258,6 +260,10 @@ Global
 		{B7FF0EE8-6C68-46C6-AADB-58C0E3309FB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7FF0EE8-6C68-46C6-AADB-58C0E3309FB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7FF0EE8-6C68-46C6-AADB-58C0E3309FB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42BB137B-6398-46A9-ABA5-B71D64E05AA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42BB137B-6398-46A9-ABA5-B71D64E05AA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42BB137B-6398-46A9-ABA5-B71D64E05AA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42BB137B-6398-46A9-ABA5-B71D64E05AA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

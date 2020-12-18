@@ -412,15 +412,6 @@ namespace Confuser.Core.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Error occured during initialization of &apos;{0}&apos;. 的本地化字符串。
-        /// </summary>
-        internal static string Resources_ConfuserEngine_RunInternal_Error_occured_during_initialization {
-            get {
-                return ResourceManager.GetString("Resources.ConfuserEngine_RunInternal_Error_occured_during_initialization", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 Watermarking... 的本地化字符串。
         /// </summary>
         internal static string WatermarkingPhase_Execute_Watermarking {
