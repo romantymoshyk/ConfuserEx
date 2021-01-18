@@ -136,7 +136,7 @@
     <value>强化阶段</value>
   </data>
   <data name="AntiILDasmPhaseName" xml:space="preserve">
-    <value>防ILDasm标记</value>
+    <value>反ILDasm标记</value>
   </data>
   <data name="HardeningProtectionName" xml:space="preserve">
     <value>保护加强</value>
@@ -205,13 +205,13 @@
     <value>此保护可对嵌入式资源进行编码和压缩。</value>
   </data>
   <data name="TypeScrambleProtectionName" xml:space="preserve">
-    <value>类型加扰器</value>
+    <value>类型干扰器</value>
   </data>
   <data name="TypeScrambleProtectionDescription" xml:space="preserve">
-    <value>用泛型替换类型</value>
+    <value>使用泛型替换方法参数传入的类型</value>
   </data>
   <data name="ScramblePhaseName" xml:space="preserve">
-    <value>类型加扰器</value>
+    <value>类型干扰器</value>
   </data>
   <data name="AnalyzePhaseName" xml:space="preserve">
     <value>类型扫描</value>
@@ -235,7 +235,7 @@
     <value>打包信息提取</value>
   </data>
   <data name="AntiILDasmProtectionName" xml:space="preserve">
-    <value>抗IL Dasm保护</value>
+    <value>IL Dasm 反编译保护</value>
   </data>
   <data name="MDPhase_Name" xml:space="preserve">
     <value>防篡改元数据</value>

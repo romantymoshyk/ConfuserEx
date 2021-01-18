@@ -135,7 +135,7 @@ namespace Confuser.Core.Services {
 					currentStack = beforeDepths[i];
 
 				beforeDepths[i] = currentStack;
-				instr.UpdateStack(ref currentStack);
+				instr.UpdateStack(ref currentStack, Method.HasReturnType);
 				afterDepths[i] = currentStack;
 
 				switch (instr.OpCode.FlowControl) {
@@ -200,12 +200,9 @@ namespace Confuser.Core.Services {
 		/// </summary>
 		/// <param name="instr">The call instruction.</param>
 		/// <returns>The indexes of the begin instruction of arguments.</returns>
-		/// <exception cref="System.ArgumentException">The specified call instruction is invalid.</exception>
 		/// <exception cref="InvalidMethodException">The method body is invalid.</exception>
 		public int[] TraceArguments(Instruction instr) {
-			if (instr.OpCode.Code != Code.Call && instr.OpCode.Code != Code.Callvirt && instr.OpCode.Code != Code.Newobj)
-				throw new ArgumentException("Invalid call instruction.", "instr");
-			instr.CalculateStackUsage(out _, out int pop); // pop is number of arguments
+			instr.CalculateStackUsage(Method.HasReturnType, out _, out int pop); // pop is number of arguments
 			if (pop == 0)
 				return new int[0];
 
@@ -223,7 +220,7 @@ namespace Confuser.Core.Services {
 				while (index >= 0) {
 					if (BeforeStackDepths[index] == targetStack) {
 						var currentInstr = method.Body.Instructions[index];
-						currentInstr.CalculateStackUsage(out int push, out pop);
+						currentInstr.CalculateStackUsage(Method.HasReturnType, out int push, out pop);
 						if (push == 0 && pop == 0) {
 							// This instruction isn't doing anything to the stack. Could be a nop or some prefix.
 							// Ignore it and move on to the next.
@@ -232,7 +229,7 @@ namespace Confuser.Core.Services {
 							break;
 						} else {
 							var prevInstr = method.Body.Instructions[index - 1];
-							prevInstr.CalculateStackUsage(out push, out _);
+							prevInstr.CalculateStackUsage(Method.HasReturnType, out push, out _);
 							if (push > 0) {
 								// A duplicate instruction is an acceptable start point in case the preceeding instruction
 								// pushes a value.
@@ -275,7 +272,7 @@ namespace Confuser.Core.Services {
 
 				while (index != instrIndex && index < method.Body.Instructions.Count) {
 					Instruction currentInstr = Instructions[index];
-					currentInstr.CalculateStackUsage(out int push, out pop);
+					currentInstr.CalculateStackUsage(Method.HasReturnType, out int push, out pop);
 					if (currentInstr.OpCode.Code == Code.Dup) {
 						// Special case duplicate. This causes the current value on the stack to be duplicated.
 						// To show this behaviour, we'll fetch the last object on the eval stack and add it back twice.

@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Confuser.Core;
 using Confuser.Core.Project;
@@ -9,29 +11,49 @@ using Xunit.Abstractions;
 
 namespace Confuser.UnitTest {
 	public abstract class TestBase {
+		private const string _externalPrefix = "external:";
+
 		readonly ITestOutputHelper outputHelper;
+
+		protected static IEnumerable<SettingItem<Protection>> NoProtections => Enumerable.Empty<SettingItem<Protection>>();
 
 		protected TestBase(ITestOutputHelper outputHelper) =>
 			this.outputHelper = outputHelper ?? throw new ArgumentNullException(nameof(outputHelper));
 
-		protected async Task Run(string inputFileName, string[] expectedOutput, SettingItem<Protection> protection,
+		protected Task Run(string inputFileName, string[] expectedOutput, SettingItem<Protection> protection,
 			string outputDirSuffix = "", Action<string> outputAction = null, SettingItem<Packer> packer = null,
-			Action<ProjectModule> projectModuleAction = null) =>
+			Action<ProjectModule> projectModuleAction = null, Func<string, Task> postProcessAction = null) =>
 
-			await Run(new[] { inputFileName }, expectedOutput, protection, outputDirSuffix, outputAction, packer,
-				projectModuleAction);
+			Run(new[] { inputFileName }, expectedOutput, protection, outputDirSuffix, outputAction, packer,
+				projectModuleAction, postProcessAction);
 
-		protected async Task Run(string[] inputFileNames, string[] expectedOutput, SettingItem<Protection> protection,
+		protected Task Run(string inputFileName, string[] expectedOutput, IEnumerable<SettingItem<Protection>> protections,
 			string outputDirSuffix = "", Action<string> outputAction = null, SettingItem<Packer> packer = null,
-			Action<ProjectModule> projectModuleAction = null) {
+			Action<ProjectModule> projectModuleAction = null, Func<string, Task> postProcessAction = null) =>
+
+			Run(new[] { inputFileName }, expectedOutput, protections, outputDirSuffix, outputAction, packer,
+				projectModuleAction, postProcessAction);
+
+		protected Task Run(string[] inputFileNames, string[] expectedOutput, SettingItem<Protection> protection,
+			string outputDirSuffix = "", Action<string> outputAction = null, SettingItem<Packer> packer = null,
+			Action<ProjectModule> projectModuleAction = null, Func<string, Task> postProcessAction = null) {
+			var protections = (protection is null) ? Enumerable.Empty<SettingItem<Protection>>() : new[] { protection };
+			return Run(inputFileNames, expectedOutput, protections, outputDirSuffix, outputAction, packer, projectModuleAction, postProcessAction);
+		}
+
+		protected async Task Run(string[] inputFileNames, string[] expectedOutput, IEnumerable<SettingItem<Protection>> protections,
+			string outputDirSuffix = "", Action<string> outputAction = null, SettingItem<Packer> packer = null,
+			Action<ProjectModule> projectModuleAction = null, Func<string, Task> postProcessAction = null) {
 
 			var baseDir = Environment.CurrentDirectory;
 			var outputDir = Path.Combine(baseDir, "obfuscated" + outputDirSuffix);
 			if (Directory.Exists(outputDir)) {
 				Directory.Delete(outputDir, true);
 			}
-			string entryInputFileName = Path.Combine(baseDir, inputFileNames[0]);
-			var entryOutputFileName = Path.Combine(outputDir, inputFileNames[0]);
+
+			string firstFileName = GetFileName(inputFileNames[0]);
+			string entryInputFileName = Path.Combine(baseDir, firstFileName);
+			var entryOutputFileName = Path.Combine(outputDir, firstFileName);
 			var proj = new ConfuserProject {
 				BaseDirectory = baseDir,
 				OutputDirectory = outputDir,
@@ -39,14 +61,18 @@ namespace Confuser.UnitTest {
 			};
 
 			foreach (string name in inputFileNames) {
-				var projectModule = new ProjectModule { Path = Path.Combine(baseDir, name) };
+				var projectModule = new ProjectModule {
+					Path = Path.Combine(baseDir, GetFileName(name)),
+					IsExternal = IsExternal(name)
+				};
 				projectModuleAction?.Invoke(projectModule);
 				proj.Add(projectModule);
 			}
 
-			if (protection != null) {
-				proj.Rules.Add(new Rule { protection });
-			}
+			var rule = new Rule();
+			rule.AddRange(protections);
+			if (rule.Count > 0)
+				proj.Rules.Add(rule);
 
 			var parameters = new ConfuserParameters {
 				Project = proj,
@@ -56,7 +82,7 @@ namespace Confuser.UnitTest {
 			await ConfuserEngine.Run(parameters);
 
 			for (var index = 0; index < inputFileNames.Length; index++) {
-				string name = inputFileNames[index];
+				string name = GetFileName(inputFileNames[index]);
 				string outputName = Path.Combine(outputDir, name);
 
 				bool exists;
@@ -72,6 +98,10 @@ namespace Confuser.UnitTest {
 					// Check if output assemblies is obfuscated
 					Assert.NotEqual(FileUtilities.ComputeFileChecksum(Path.Combine(baseDir, name)),
 						FileUtilities.ComputeFileChecksum(outputName));
+				} else if (IsExternal(inputFileNames[index])) {
+					File.Copy(
+						Path.Combine(baseDir, GetFileName(inputFileNames[index])),
+						Path.Combine(outputDir, GetFileName(inputFileNames[index])));
 				}
 			}
 
@@ -91,6 +121,17 @@ namespace Confuser.UnitTest {
 					Assert.Equal(42, process.ExitCode);
 				}
 			}
+
+			if (!(postProcessAction is null))
+				await postProcessAction.Invoke(outputDir);
 		}
+
+		private static string GetFileName(string name) {
+			if (IsExternal(name))
+				return name.Substring(_externalPrefix.Length);
+			return name;
+		}
+
+		private static bool IsExternal(string name) => name.StartsWith(_externalPrefix, StringComparison.OrdinalIgnoreCase);
 	}
 }

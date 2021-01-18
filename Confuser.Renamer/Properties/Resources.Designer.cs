@@ -152,6 +152,17 @@ namespace Confuser.Renamer.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Tracing arguments for {0} call in {1} failed. What ever member is referenced here by reflection won&apos;t be properly handled by the name obfuscation. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Invalid format string provided for the namespace format. Got: {0} ähnelt.
+        /// </summary>
+        internal static string NameService_ObfuscateName_InvalidFormat {
+            get {
+                return ResourceManager.GetString("NameService_ObfuscateName_InvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Tracing arguments for {0} call in {1} failed. What ever member is referenced here by reflection won&apos;t be properly handled by the name obfuscation. ähnelt.
         ///   查找类似 This protection obfuscate the symbols&apos; name so the decompiled source code can neither be compiled nor read. 的本地化字符串。
         /// </summary>
         internal static string NameProtectionDescription {

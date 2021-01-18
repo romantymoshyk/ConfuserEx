@@ -122,7 +122,7 @@
     <value>分析中…</value>
   </data>
   <data name="NameProtectionDescription" xml:space="preserve">
-    <value>这种保护会混淆符号的名称，因此无法编译或读取反编译的源代码。</value>
+    <value>、移除命名空间，并混淆所有类、方法、字段、枚举等名称，包括有声明public的访问修饰符，全部会混淆。</value>
   </data>
   <data name="NameProtectionName" xml:space="preserve">
     <value>名称保护</value>

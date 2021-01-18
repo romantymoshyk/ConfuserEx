@@ -314,11 +314,18 @@ namespace Confuser.Core {
 					continue;
 				}
 
-				ModuleDefMD modDef = module.Resolve(proj.BaseDirectory, context.Resolver.DefaultModuleContext);
-				context.CheckCancellation();
+				try {
+					ModuleDefMD modDef =
+						module.Resolve(proj.BaseDirectory, context.InternalResolver.DefaultModuleContext);
+					context.CheckCancellation();
 
-				context.Resolver.AddToCache(modDef);
-				modules.Add(Tuple.Create(module, modDef));
+					context.InternalResolver.AddToCache(modDef);
+					modules.Add(Tuple.Create(module, modDef));
+				}
+				catch (BadImageFormatException ex) {
+					context.Logger.ErrorFormat("Failed to load \"{0}\" - Assembly does not appear to be a .NET assembly: \"{1}\".", module.Path, ex.Message);
+					throw new ConfuserException(ex);
+				}
 			}
 			foreach (var module in modules) {
 				context.Logger.InfoFormat(Resources.ObfAttrMarker_MarkProject_Loading, module.Item1.Path);

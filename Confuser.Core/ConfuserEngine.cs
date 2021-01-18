@@ -92,10 +92,9 @@ namespace Confuser.Core {
 					new SettingItem<Protection>(WatermarkingProtection._Id)
 				});
 
-				var asmResolver = new AssemblyResolver();
-				asmResolver.EnableTypeDefCache = true;
+				var asmResolver = new ConfuserAssemblyResolver {EnableTypeDefCache = true};
 				asmResolver.DefaultModuleContext = new ModuleContext(asmResolver);
-				context.Resolver = asmResolver;
+				context.InternalResolver = asmResolver;
 				context.BaseDirectory = Path.Combine(Environment.CurrentDirectory, context.Project.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar);
 				context.OutputDirectory = Path.Combine(context.Project.BaseDirectory, context.Project.OutputDirectory.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar);
 				foreach (string probePath in context.Project.ProbePaths)
@@ -207,7 +206,7 @@ namespace Confuser.Core {
 			}
 			finally {
 				if (context.Resolver != null)
-					context.Resolver.Clear();
+					context.InternalResolver.Clear();
 				context.Logger.Finish(ok);
 			}
 		}
@@ -266,7 +265,7 @@ namespace Confuser.Core {
 			foreach (var dependency in context.Modules
 											  .SelectMany(module => module.GetAssemblyRefs().Select(asmRef => Tuple.Create(asmRef, module)))) {
 				try {
-					AssemblyDef assembly = context.Resolver.ResolveThrow(dependency.Item1, dependency.Item2);
+					context.Resolver.ResolveThrow(dependency.Item1, dependency.Item2);
 				}
 				catch (AssemblyResolveException ex) {
 					context.Logger.ErrorException(string.Format(Resources.ConfuserEngine_Inspection_Failed_to_resolve_dependency, dependency.Item2.Name), ex);
@@ -438,7 +437,7 @@ namespace Confuser.Core {
 		}
 
 		static void SaveModules(ConfuserContext context) {
-			context.Resolver.Clear();
+			context.InternalResolver.Clear();
 			for (int i = 0; i < context.OutputModules.Count; i++) {
 				string path = Path.GetFullPath(Path.Combine(context.OutputDirectory, context.OutputPaths[i]));
 				string dir = Path.GetDirectoryName(path);
@@ -533,7 +532,7 @@ namespace Confuser.Core {
 
 			if (context.Resolver != null) {
 				context.Logger.Error(Resources.ConfuserEngine_PrintEnvironmentInfo_Cached_assemblies);
-				foreach (AssemblyDef asm in context.Resolver.GetCachedAssemblies()) {
+				foreach (AssemblyDef asm in context.InternalResolver.GetCachedAssemblies()) {
 					if (string.IsNullOrEmpty(asm.ManifestModule.Location))
 						context.Logger.ErrorFormat("    {0}", asm.FullName);
 					else
