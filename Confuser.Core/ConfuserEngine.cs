@@ -333,12 +333,11 @@ namespace Confuser.Core {
 			context.Logger.InfoFormat(Resources.ConfuserEngine_BeginModule_Processing_module, context.CurrentModule.Name);
 
 			context.CurrentModuleWriterOptions = new ModuleWriterOptions(context.CurrentModule);
-			context.CurrentModuleWriterOptions.WriterEvent += (sender, e) => context.CheckCancellation();
-			context.Logger.InfoFormat(Resources.ConfuserEngine_BeginModule_Processing_PEHeaders);
+            context.Logger.InfoFormat(Resources.ConfuserEngine_BeginModule_Processing_PEHeaders);
 			CopyPEHeaders(context.CurrentModuleWriterOptions.PEHeadersOptions, context.CurrentModule);
 
 			if (!context.CurrentModule.IsILOnly || context.CurrentModule.VTableFixups != null)
-				context.RequestNative();
+				context.RequestNative(true);
 
 			context.Logger.InfoFormat(Resources.ConfuserEngine_BeginModule_Processing_StrongName);
 			var snKey = context.Annotations.Get<StrongNameKey>(context.CurrentModule, Marker.SNKey);
@@ -371,7 +370,8 @@ namespace Confuser.Core {
 				}
 		}
 
-		static void ProcessModule(ConfuserContext context) { }
+		static void ProcessModule(ConfuserContext context) => 
+			context.CurrentModuleWriterOptions.WriterEvent += (sender, e) => context.CheckCancellation();
 
 		static void OptimizeMethods(ConfuserContext context) {
 			foreach (TypeDef type in context.CurrentModule.GetTypes())

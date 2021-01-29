@@ -100,12 +100,14 @@ namespace Confuser.Protections.AntiTamper {
 		}
 
 		void WriterEvent(object sender, ModuleWriterEventArgs e) {
-			var writer = (ModuleWriterBase)sender;
-			if (e.Event == ModuleWriterEvent.MDEndCreateTables) {
-				CreateSections(writer);
-			}
-			else if (e.Event == ModuleWriterEvent.BeginStrongNameSign) {
-				EncryptSection(writer);
+			switch (e.Event)
+			{
+				case ModuleWriterEvent.MDEndCreateTables:
+					CreateSections(e.Writer);
+					break;
+				case ModuleWriterEvent.BeginStrongNameSign:
+					EncryptSection(e.Writer);
+					break;
 			}
 		}
 
