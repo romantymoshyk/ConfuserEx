@@ -149,7 +149,9 @@ namespace Confuser.Core {
 			var extModules = new List<byte[]>();
 			foreach (ProjectModule module in proj) {
 				if (module.IsExternal) {
-					extModules.Add(module.LoadRaw(proj.BaseDirectory));
+					var rawModule = module.LoadRaw(proj.BaseDirectory);
+					extModules.Add(rawModule);
+					context.InternalResolver.AddToCache(ModuleDefMD.Load(rawModule, context.InternalResolver.DefaultModuleContext));
 					continue;
 				}
 
