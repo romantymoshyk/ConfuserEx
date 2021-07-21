@@ -70,7 +70,7 @@ The format of project file can be found in [docs\ProjectFormat.md][project_forma
 [Obfuscation(Exclude=false, Feature="-rename")]
 ```
 
-## 声明单独的规则，以包含或排除需要重命名或不需要重命名的规则，以下规则需要手动配置，无法通过软件配置：
+## 声明单独的规则，以包含或排除需要重命名或不需要重命名的规则：
 
 #### 根据特定的[命名空间]排除[重命名]：
 ```XML

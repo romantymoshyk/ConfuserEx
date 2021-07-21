@@ -25,5 +25,11 @@
   </ItemGroup>
   
   <Import Project="..\ConfuserEx.Common.targets" Condition="Exists('..\ConfuserEx.Common.targets')" />
-
+  <ItemGroup>
+    <FilesToCopy Include="$(TargetDir)$(TargetName)*.*" />
+  </ItemGroup>
+  <Target Name="输出必需文件" AfterTargets="CopyFilesToOutputDirectory">
+    <MakeDir Directories="$(SolutionDir)ConfuserEx\$(OutDir)" Condition="!Exists('$(SolutionDir)ConfuserEx\$(OutDir)')" />
+    <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="$(SolutionDir)ConfuserEx\$(OutDir)" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="True" />
+  </Target>
 </Project>

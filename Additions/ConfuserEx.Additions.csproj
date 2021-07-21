@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup Label="Nuget Dependencies">
-    <PackageReference Include="dnlib" Version="3.3.2" />
+    <PackageReference Include="dnlib" Version="3.3.3" />
   </ItemGroup>
   
   <ItemGroup>
@@ -46,4 +46,13 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <Target Name="输出必需文件" AfterTargets="CopyFilesToOutputDirectory">
+    <ItemGroup>
+      <FilesToCopy Include="$(TargetDir)$(TargetName).*" />
+    </ItemGroup>
+    <MakeDir Directories="$(SolutionDir)ConfuserEx\$(OutDir)Plugins" Condition="!Exists('$(SolutionDir)ConfuserEx\$(OutDir)Plugins')" />
+    <MakeDir Directories="$(SolutionDir)ConfuserEx\$(OutDir)zh-Hans" Condition="!Exists('$(SolutionDir)ConfuserEx\$(OutDir)zh-Hans')" />
+    <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="$(SolutionDir)ConfuserEx\$(OutDir)Plugins" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="True" />
+    <Copy SourceFiles="$(TargetDir)zh-Hans\$(TargetName).resources$(TargetExt)" DestinationFolder="$(SolutionDir)ConfuserEx\$(OutDir)zh-Hans" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="True" />
+  </Target>
 </Project>
