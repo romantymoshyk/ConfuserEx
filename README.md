@@ -9,50 +9,63 @@
 ConfuserEx is a open-source protector for .NET applications.
 It is the successor of [Confuser][confuser] project.
 
-ConfuserExæ˜¯ä¸€ä¸ª.NETåº”ç”¨ç¨‹åºçš„å¼€æºæ··æ·†åŠ å¯†ç¨‹åºã€‚
-å®ƒæ˜¯[Confuser][confuser]é¡¹ç›®çš„ç»§æ‰¿è€…ã€‚
+ConfuserExÊÇÒ»¸ö.NETÓ¦ÓÃ³ÌĞòµÄ¿ªÔ´»ìÏı¼ÓÃÜ³ÌĞò¡£
+ËüÊÇ[Confuser][confuser]ÏîÄ¿µÄ¼Ì³ĞÕß¡£
 
-# Features åŠŸèƒ½
-english | ä¸­æ–‡
+## Features
+
+* Supports .NET Framework 2.0/3.0/3.5/4.0/4.5/4.6/4.7/4.8
+* Symbol renaming (Support WPF/BAML)
+* Protection against debuggers/profilers
+* Protection against memory dumping
+* Protection against tampering (method encryption)
+* Control flow obfuscation
+* Constant/resources encryption
+* Reference hiding proxies
+* Disable decompilers
+* Embedding dependency
+* Compressing output
+* Extensible plugin API
+* Many more are coming!
+
+# ¹¦ÄÜÖ§³Ö.NET Framework 2.0/3.0/3.5/4.0/4.5/4.6/4.7/4.8
+·ûºÅÖØÃüÃû£¨Ö§³ÖWPF/BAML£©
+Õë¶Ôµ÷ÊÔÆ÷/Ì½²éÆ÷µÄ±£»¤
+·ÀÖ¹ÄÚ´æ×ª´¢
+·À´Û¸Ä±£»¤£¨·½·¨¼ÓÃÜ£©
+¿ØÖÆÁ÷»ìÏı
+³£Á¿/×ÊÔ´¼ÓÃÜ
+ÒıÓÃÒş²Ø´úÀí
+½ûÓÃ·´±àÒëÆ÷
+Ç¶ÈëÒÀÀµÏî
+Ñ¹ËõÊä³ö
+¿ÉÀ©Õ¹²å¼şAPI
+¸ü¶à¹¦ÄÜµÈÄãÀ´
+# Usage
+# Improved Features ¶ÔÔ­°æ¸Ä½ø¹¦ÄÜ
+english | ÖĞÎÄ
 :------------ | :-------------
- Supports .NET Framework 2.0/3.0/3.5/4.0/4.5/4.6/4.7 | æ”¯æŒ.NET Framework 2.0/3.0/3.5/4.0/4.5/4.6/4.7
- Symbol renaming (Support WPF/BAML) | ç¬¦å·é‡å‘½åï¼ˆæ”¯æŒWPF/BAMLï¼‰
- Protection against debuggers/profilers | é’ˆå¯¹è°ƒè¯•å™¨/æ¢æŸ¥å™¨çš„ä¿æŠ¤
- Protection against memory dumping | é˜²æ­¢å†…å­˜è½¬å‚¨
- Protection against tampering (method encryption) | é˜²ç¯¡æ”¹ä¿æŠ¤ï¼ˆæ–¹æ³•åŠ å¯†ï¼‰
- Control flow obfuscation | æ§åˆ¶æµæ··æ·†
- Constant/resources encryption | å¸¸é‡/èµ„æºåŠ å¯†
- Reference hiding proxies | å¼•ç”¨éšè—ä»£ç†
- Disable decompilers | ç¦ç”¨åç¼–è¯‘å™¨
- Embedding dependency | åµŒå…¥ä¾èµ–é¡¹
- Compressing output | å‹ç¼©è¾“å‡º
- Extensible plugin API | å¯æ‰©å±•æ’ä»¶API
- Many more are coming! | æ›´å¤šåŠŸèƒ½ç­‰ä½ æ¥
+Automatically load existing plug-ins from the plug-in directory | ´Ó²å¼şÄ¿Â¼ÖĞ×Ô¶¯¼ÓÔØ´æÔÚµÄ²å¼ş
+Add Chinese language resources | Ìí¼ÓÖĞÎÄÓïÑÔ×ÊÔ´
 
-# Improved Features å¯¹åŸç‰ˆæ”¹è¿›åŠŸèƒ½
-english | ä¸­æ–‡
-:------------ | :-------------
-Automatically load existing plug-ins from the plug-in directory | ä»æ’ä»¶ç›®å½•ä¸­è‡ªåŠ¨åŠ è½½å­˜åœ¨çš„æ’ä»¶
-Add Chinese language resources | æ·»åŠ ä¸­æ–‡è¯­è¨€èµ„æº
-
-# Custom Plugins è‡ªå®šä¹‰æ’ä»¶æ¨¡å—æ¸…å•
-protection | english | ä¸­æ–‡
+# Custom Plugins ×Ô¶¨Òå²å¼şÄ£¿éÇåµ¥
+protection | english | ÖĞÎÄ
 :------------ | :------------ | :-------------
-AntiDe4dot | Prevents usage of De4Dot. | é˜²æ­¢ä½¿ç”¨De4Dotåç¼–è¯‘
-AntiWatermark | Removes the ProtectedBy watermark to prevent Protector detection. | åˆ é™¤æ°´å°ï¼Œä»¥é˜²æ­¢è¢«æ£€æµ‹åˆ°æ··æ·†å™¨
-AntiDump | Prevents the assembly from being dumped from memory. | ç¦æ­¢ä»å†…å­˜è½¬å‚¨ç¨‹åºé›†
-Constant | This protection encodes and compresses constants in the code. | å¯¹ä»£ç ä¸­çš„å¸¸é‡è¿›è¡Œç¼–ç å’Œå‹ç¼©
-EreaseHeader | Overwrites the whole PE Header. | æ¸…é™¤æ•´ä¸ªPEæ ‡å¤´
-OpCodeProt | Protects OpCodes such as Ldlfd. | æ··æ·†æ“ä½œç ï¼Œä¾‹å¦‚Ldlfd
-FakeObfuscator | Confuses obfuscators like de4dot by adding types typical to other obfuscators. | å°†å…¸å‹æ··æ·†å™¨ç±»å‹æ·»åŠ åˆ°æ¨¡å—ä¸­ï¼Œç”¨äºé˜²æ­¢åæ··æ·†å™¨æ£€æµ‹ã€‚ï¼ˆå¦‚ de4dotï¼‰
-LocaltoField | This protection marks the module with a attribute that discourage ILDasm from disassembling it. | ç”¨ç‰¹æ€§æ¥æ ‡è®°æ¨¡å—ï¼Œç¦æ­¢ILDasmåç¼–è¯‘å®ƒ
-Anti DnSpy | Prevents assembly execution if dnspy is detected on disk | é˜²æ­¢ä½¿ç”¨DnSpyè°ƒè¯•ç¨‹åºé›†
-Anti Virtual Machine | Prevents the assembly from running on a virtual machine. | ç¦æ­¢ç¨‹åºé›†åœ¨è™šæ‹Ÿæœºä¸Šè¿è¡Œã€‚
+AntiDe4dot | Prevents usage of De4Dot. | ·ÀÖ¹Ê¹ÓÃDe4Dot·´±àÒë
+AntiWatermark | Removes the ProtectedBy watermark to prevent Protector detection. | É¾³ıË®Ó¡£¬ÒÔ·ÀÖ¹±»¼ì²âµ½»ìÏıÆ÷
+AntiDump | Prevents the assembly from being dumped from memory. | ½ûÖ¹´ÓÄÚ´æ×ª´¢³ÌĞò¼¯
+Constant | This protection encodes and compresses constants in the code. | ¶Ô´úÂëÖĞµÄ³£Á¿½øĞĞ±àÂëºÍÑ¹Ëõ
+EreaseHeader | Overwrites the whole PE Header. | Çå³ıÕû¸öPE±êÍ·
+OpCodeProt | Protects OpCodes such as Ldlfd. | »ìÏı²Ù×÷Âë£¬ÀıÈçLdlfd
+FakeObfuscator | Confuses obfuscators like de4dot by adding types typical to other obfuscators. | ½«µäĞÍ»ìÏıÆ÷ÀàĞÍÌí¼Óµ½Ä£¿éÖĞ£¬ÓÃÓÚ·ÀÖ¹·´»ìÏıÆ÷¼ì²â¡££¨Èç de4dot£©
+LocaltoField | This protection marks the module with a attribute that discourage ILDasm from disassembling it. | ÓÃÌØĞÔÀ´±ê¼ÇÄ£¿é£¬½ûÖ¹ILDasm·´±àÒëËü
+Anti DnSpy | Prevents assembly execution if dnspy is detected on disk | ·ÀÖ¹Ê¹ÓÃDnSpyµ÷ÊÔ³ÌĞò¼¯
+Anti Virtual Machine | Prevents the assembly from running on a virtual machine. | ½ûÖ¹³ÌĞò¼¯ÔÚĞéÄâ»úÉÏÔËĞĞ¡£
 Mutate Constants | Mutate Contants with sizeofs. | 
-New Control Flow | modified version of IntControlFlow from GabTeix. | æ–°çš„æµç¨‹æ··æ·†æ¨¡å—
-Reduce Metadata Optimization | Reduces the size of assembly by removing unnecessary metadata such as parameter names, duplicate literal strings, etc. | é€šè¿‡åˆ é™¤ä¸å¿…è¦çš„å…ƒæ•°æ®ï¼ˆå¦‚å‚æ•°åã€é‡å¤çš„æ–‡æœ¬å­—ç¬¦ä¸²ç­‰ï¼‰æ¥å‡å°ç¨‹åºé›†çš„å¤§å°ã€‚
+New Control Flow | modified version of IntControlFlow from GabTeix. | ĞÂµÄÁ÷³Ì»ìÏıÄ£¿é
+Reduce Metadata Optimization | Reduces the size of assembly by removing unnecessary metadata such as parameter names, duplicate literal strings, etc. | Í¨¹ıÉ¾³ı²»±ØÒªµÄÔªÊı¾İ£¨Èç²ÎÊıÃû¡¢ÖØ¸´µÄÎÄ±¾×Ö·û´®µÈ£©À´¼õĞ¡³ÌĞò¼¯µÄ´óĞ¡¡£
 
-# Usage ç”¨æ³•
+# Usage ÓÃ·¨
 ```Batchfile
 Confuser.CLI.exe <path to project file>
 ```
@@ -60,19 +73,19 @@ Confuser.CLI.exe <path to project file>
 The project file is a ConfuserEx Project (`*.crproj`).
 The format of project file can be found in [docs\ProjectFormat.md][project_format]
 
-# Advanced function configuration é«˜çº§åŠŸèƒ½é…ç½®
-#### å£°æ˜ç¨‹åºé›†ç‰¹æ€§ï¼Œç¦ç”¨æ°´å°ï¼š
+# Advanced function configuration ¸ß¼¶¹¦ÄÜÅäÖÃ
+#### ÉùÃ÷³ÌĞò¼¯ÌØĞÔ£¬½ûÓÃË®Ó¡£º
 ```C#
 [assembly: Obfuscation(Exclude = False, Feature = "-watermark")]
 ```
-#### å£°æ˜ç±»çš„ç‰¹æ€§ï¼ŒæŸä¸ªç±»ç¦ç”¨é‡å‘½åï¼š
+#### ÉùÃ÷ÀàµÄÌØĞÔ£¬Ä³¸öÀà½ûÓÃÖØÃüÃû£º
 ```C#
 [Obfuscation(Exclude=false, Feature="-rename")]
 ```
 
-## å£°æ˜å•ç‹¬çš„è§„åˆ™ï¼Œä»¥åŒ…å«æˆ–æ’é™¤éœ€è¦é‡å‘½åæˆ–ä¸éœ€è¦é‡å‘½åçš„è§„åˆ™ï¼š
+## ÉùÃ÷µ¥¶ÀµÄ¹æÔò£¬ÒÔ°üº¬»òÅÅ³ıĞèÒªÖØÃüÃû»ò²»ĞèÒªÖØÃüÃûµÄ¹æÔò£º
 
-#### æ ¹æ®ç‰¹å®šçš„[å‘½åç©ºé—´]æ’é™¤[é‡å‘½å]ï¼š
+#### ¸ù¾İÌØ¶¨µÄ[ÃüÃû¿Õ¼ä]ÅÅ³ı[ÖØÃüÃû]£º
 ```XML
 <rule pattern="true">
   <protection id="rename" />
@@ -82,7 +95,7 @@ The format of project file can be found in [docs\ProjectFormat.md][project_forma
 </rule>
 ```
 
-#### æ ¹æ®ç‰¹å®šçš„[å‘½åç©ºé—´]æ’é™¤å¯¹å…¬å¼€ç±»å‹çš„[é‡å‘½å]ï¼š
+#### ¸ù¾İÌØ¶¨µÄ[ÃüÃû¿Õ¼ä]ÅÅ³ı¶Ô¹«¿ªÀàĞÍµÄ[ÖØÃüÃû]£º
 ```XML
 <rule pattern="inherits('System.Web.UI.Page')" preset="none">
     <protection id="rename">
@@ -90,13 +103,13 @@ The format of project file can be found in [docs\ProjectFormat.md][project_forma
     </protection>
 </rule>
 ```
-#### æ ¹æ®ç‰¹å®šçš„[ç±»å]æ’é™¤[é‡å‘½å]ï¼š
+#### ¸ù¾İÌØ¶¨µÄ[ÀàÃû]ÅÅ³ı[ÖØÃüÃû]£º
 ```XML
 <rule pattern="match-type-name('DataObject')" inherit="false">
     <protection id="rename" action="remove" />
 </rule>
 ```
-#### é’ˆå¯¹[éå…¬å¼€]çš„ï¼Œå¹¶ä¸”æ˜¯æœ‰[å¯åºåˆ—åŒ–]ç‰¹æ€§çš„ç±»è¿›è¡Œå¼ºåˆ¶é‡å‘½åï¼š
+#### Õë¶Ô[·Ç¹«¿ª]µÄ£¬²¢ÇÒÊÇÓĞ[¿ÉĞòÁĞ»¯]ÌØĞÔµÄÀà½øĞĞÇ¿ÖÆÖØÃüÃû£º
 ```XML
 <rule pattern="not is-public() and is-type('serializable')">
   <protection id="rename">
@@ -104,32 +117,32 @@ The format of project file can be found in [docs\ProjectFormat.md][project_forma
   </protection>
 </rule>
 ```
-#### é’ˆå¯¹æ‰€æœ‰ç»§æ‰¿[æšä¸¾ç±»å‹]çš„ï¼Œå¹¶ä¸”æ˜¯[å…¬å¼€]çš„ç±»å‹ï¼Œä¸è¦é‡å‘½åï¼š
+#### Õë¶ÔËùÓĞ¼Ì³Ğ[Ã¶¾ÙÀàĞÍ]µÄ£¬²¢ÇÒÊÇ[¹«¿ª]µÄÀàĞÍ£¬²»ÒªÖØÃüÃû£º
 ```XML
 <rule pattern="inherits('System.Enum') and is-public()" inherit="false">
     <protection id="rename" action="remove" />
 </rule>
 ```
 
-#### è§„åˆ™å¯ç”¨è§£ææ¨¡å¼åˆ—è¡¨ï¼š
+#### ¹æÔò¿ÉÓÃ½âÎöÄ£Ê½ÁĞ±í£º
 ```XML
 or
 and
 not
-module           åˆ¤æ–­æ¨¡å—åç§°
-namespace        åˆ¤æ–­å‘½åç©ºé—´å®Œå…¨åŒ¹é…ï¼Œæ”¯æŒä¸€ä¸ªå‚æ•°ï¼Œæ”¯æŒæ­£åˆ™
-member-type      åˆ¤æ–­æˆå‘˜ç±»å‹ï¼Œæ”¯æŒä¸€ä¸ªå‚æ•°ï¼Œå¯ç”¨å‚æ•°ä¸ºtypeã€methodã€propertym getterã€propertym setterã€eventm addã€eventm removeã€eventm fireã€otherã€fieldã€propertyã€eventã€module
-name             å®Œå…¨åŒ¹é…åç§°(Name)ï¼Œä¸æ”¯æŒæ­£åˆ™
-match            åŒ¹é…å…¨åç§°(FullName)ï¼Œæ”¯æŒæ­£åˆ™ï¼Œéå®Œå…¨åŒ¹é…
-match-name       åŒ¹é…åç§°(Name)ï¼Œæ”¯æŒæ­£åˆ™ï¼Œéå®Œå…¨åŒ¹é…
-match-type-name  åŒ¹é…ç±»å‹åç§°ï¼Œæ”¯æŒæ­£åˆ™ï¼Œéå®Œå…¨åŒ¹é…
+module           ÅĞ¶ÏÄ£¿éÃû³Æ
+namespace        ÅĞ¶ÏÃüÃû¿Õ¼äÍêÈ«Æ¥Åä£¬Ö§³ÖÒ»¸ö²ÎÊı£¬Ö§³ÖÕıÔò
+member-type      ÅĞ¶Ï³ÉÔ±ÀàĞÍ£¬Ö§³ÖÒ»¸ö²ÎÊı£¬¿ÉÓÃ²ÎÊıÎªtype¡¢method¡¢propertym getter¡¢propertym setter¡¢eventm add¡¢eventm remove¡¢eventm fire¡¢other¡¢field¡¢property¡¢event¡¢module
+name             ÍêÈ«Æ¥ÅäÃû³Æ(Name)£¬²»Ö§³ÖÕıÔò
+match            Æ¥ÅäÈ«Ãû³Æ(FullName)£¬Ö§³ÖÕıÔò£¬·ÇÍêÈ«Æ¥Åä
+match-name       Æ¥ÅäÃû³Æ(Name)£¬Ö§³ÖÕıÔò£¬·ÇÍêÈ«Æ¥Åä
+match-type-name  Æ¥ÅäÀàĞÍÃû³Æ£¬Ö§³ÖÕıÔò£¬·ÇÍêÈ«Æ¥Åä
 
-is-type    åˆ¤æ–­æ˜¯å¦æŒ‡å®šç±»å‹ï¼Œæ”¯æŒä¸€ä¸ªå‚æ•°ï¼Œå¯ç”¨å‚æ•°ä¸ºenumã€interfaceã€valuetypeã€delegateã€abstractã€nestedã€serializable
-is-public  æŒ‡ç¤ºæˆå‘˜å¯è§æ€§
-inherits   æŒ‡ç¤ºç±»å‹æ˜¯å¦ä»æŒ‡å®šç±»å‹ç»§æ‰¿
-has-attr   æ¯”è¾ƒæ˜¯å¦å…·æœ‰æŒ‡å®šç‰¹æ€§ï¼ˆattributeï¼‰
-full-name  æ¯”è¾ƒå®šä¹‰å…¨åï¼ˆdefinitionï¼‰
-decl-type  æ¯”è¾ƒå£°æ˜ç±»å‹å…¨åï¼ˆdeclaring typeï¼‰
+is-type    ÅĞ¶ÏÊÇ·ñÖ¸¶¨ÀàĞÍ£¬Ö§³ÖÒ»¸ö²ÎÊı£¬¿ÉÓÃ²ÎÊıÎªenum¡¢interface¡¢valuetype¡¢delegate¡¢abstract¡¢nested¡¢serializable
+is-public  Ö¸Ê¾³ÉÔ±¿É¼ûĞÔ
+inherits   Ö¸Ê¾ÀàĞÍÊÇ·ñ´ÓÖ¸¶¨ÀàĞÍ¼Ì³Ğ
+has-attr   ±È½ÏÊÇ·ñ¾ßÓĞÖ¸¶¨ÌØĞÔ£¨attribute£©
+full-name  ±È½Ï¶¨ÒåÈ«Ãû£¨definition£©
+decl-type  ±È½ÏÉùÃ÷ÀàĞÍÈ«Ãû£¨declaring type£©
 ```
 
 ```XML
@@ -140,15 +153,15 @@ decl-type  æ¯”è¾ƒå£°æ˜ç±»å‹å…¨åï¼ˆdeclaring typeï¼‰
       <argument name="password" value="This password is secret" />
     </protection>
     
-    é‡å‘½åç›¸å…³å‚æ•°åˆ—è¡¨ï¼š
-    renameArgs   æ˜¯å¦é‡å‘½åå‚æ•°
-    forceRen     æ˜¯å¦å¼ºåˆ¶é‡å‘½å
-    renPublic    æ˜¯å¦é‡å‘½åå…¬å¼€ç±»å‹
-    renEnum      æ˜¯å¦é‡å‘½åæšä¸¾
-    password     é‡å‘½åæ—¶ç”Ÿæˆæ–°åç§°çš„å¯†ç 
+    ÖØÃüÃûÏà¹Ø²ÎÊıÁĞ±í£º
+    renameArgs   ÊÇ·ñÖØÃüÃû²ÎÊı
+    forceRen     ÊÇ·ñÇ¿ÖÆÖØÃüÃû
+    renPublic    ÊÇ·ñÖØÃüÃû¹«¿ªÀàĞÍ
+    renEnum      ÊÇ·ñÖØÃüÃûÃ¶¾Ù
+    password     ÖØÃüÃûÊ±Éú³ÉĞÂÃû³ÆµÄÃÜÂë
 ```
 
-# Bug Report BUGåé¦ˆ
+# Bug Report BUG·´À¡
 
 See the [Issues Report][issues] section of website.
 

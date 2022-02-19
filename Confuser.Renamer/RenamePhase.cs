@@ -121,7 +121,7 @@ namespace Confuser.Renamer {
 			var lastCount = -1;
 			while (currentList.Any()) {
 				foreach (var def in currentList) {
-					if (service.GetReferences(def).Any(r => r.DelayRenaming(service)))
+					if (service.GetReferences(def).Any(r => r.DelayRenaming(service, def)))
 						delayedItems.Add(def);
 					else
 						yield return def;
