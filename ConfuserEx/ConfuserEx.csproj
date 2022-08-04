@@ -34,5 +34,8 @@
   </ItemGroup>
 
   <Import Project="..\ConfuserEx.Common.targets" Condition="Exists('..\ConfuserEx.Common.targets')" />
-
+  <Target Name="BuildAddition" AfterTargets="Build">
+    <MSBuild Projects="..\Confuser.CLI\Confuser.CLI.csproj" Properties="Configuration=$(Configuration)" Targets="Build" />
+    <MSBuild Projects="..\Additions\ConfuserEx.Additions.csproj" Properties="Configuration=$(Configuration)" Targets="Build" />
+  </Target>
 </Project>

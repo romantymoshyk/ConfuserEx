@@ -60,7 +60,7 @@ namespace Confuser.Protections.FakeObuscator
             foreach (TypeDef type in types.Select(n=> runtime.GetRuntimeType(n.FullName)))
             {
                 if(type == null) continue;
-                var newType = new TypeDefUser(m.GlobalType.Namespace, type.Name);
+                var newType = new TypeDefUser(m.GlobalType.Namespace, type.Name, type.BaseType);
                 m.Types.Add(newType);
 
                 l.Debug(Resources.FakeObfuscatorTypesPhase_InjectType_Debug + newType);

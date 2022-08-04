@@ -128,15 +128,21 @@ namespace Confuser.Core {
 		internal void ExecuteStage(PipelineStage stage, Action<ConfuserContext> func, Func<IList<IDnlibDef>> targets, ConfuserContext context) {
 			foreach (ProtectionPhase pre in preStage[stage]) {
 				context.CheckCancellation();
-				context.Logger.DebugFormat(Resources.ProtectionPipeline_ExecuteStage_Executing, pre.Name);
-				pre.Execute(context, new ProtectionParameters(pre.Parent, Filter(context, targets(), pre)));
+				var specifiedTargets = Filter(context, targets(), pre);
+				if (specifiedTargets.Count > 0) {
+					context.Logger.DebugFormat(Resources.ProtectionPipeline_ExecuteStage_Executing, pre.Name);
+					pre.Execute(context, new ProtectionParameters(pre.Parent, specifiedTargets));
+				}
 			}
 			context.CheckCancellation();
 			func(context);
 			context.CheckCancellation();
 			foreach (ProtectionPhase post in postStage[stage]) {
-				context.Logger.DebugFormat(Resources.ProtectionPipeline_ExecuteStage_Executing, post.Name);
-				post.Execute(context, new ProtectionParameters(post.Parent, Filter(context, targets(), post)));
+				var specifiedTargets = Filter(context, targets(), post);
+				if (specifiedTargets.Count > 0) {
+					context.Logger.DebugFormat(Resources.ProtectionPipeline_ExecuteStage_Executing, post.Name);
+					post.Execute(context, new ProtectionParameters(post.Parent, specifiedTargets));
+				}
 				context.CheckCancellation();
 			}
 		}

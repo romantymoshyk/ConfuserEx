@@ -26,7 +26,7 @@
   
   <Import Project="..\ConfuserEx.Common.targets" Condition="Exists('..\ConfuserEx.Common.targets')" />
   <ItemGroup>
-    <FilesToCopy Include="$(TargetDir)$(TargetName)*.*" />
+    <FilesToCopy Include="$(TargetDir)*.*" />
   </ItemGroup>
   <Target Name="输出必需文件" AfterTargets="CopyFilesToOutputDirectory">
     <MakeDir Directories="$(SolutionDir)ConfuserEx\$(OutDir)" Condition="!Exists('$(SolutionDir)ConfuserEx\$(OutDir)')" />
