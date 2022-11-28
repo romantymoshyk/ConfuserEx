@@ -50,9 +50,9 @@
     <ItemGroup>
       <FilesToCopy Include="$(TargetDir)$(TargetName).*" />
     </ItemGroup>
-    <MakeDir Directories="$(SolutionDir)ConfuserEx\$(OutDir)Plugins" Condition="!Exists('$(SolutionDir)ConfuserEx\$(OutDir)Plugins')" />
-    <MakeDir Directories="$(SolutionDir)ConfuserEx\$(OutDir)zh-Hans" Condition="!Exists('$(SolutionDir)ConfuserEx\$(OutDir)zh-Hans')" />
-    <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="$(SolutionDir)ConfuserEx\$(OutDir)Plugins" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="True" />
-    <Copy SourceFiles="$(TargetDir)zh-Hans\$(TargetName).resources$(TargetExt)" DestinationFolder="$(SolutionDir)ConfuserEx\$(OutDir)zh-Hans" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="True" />
+    <MakeDir Directories="..\ConfuserEx\$(OutDir)Plugins" Condition="!Exists('..\ConfuserEx\$(OutDir)Plugins')" />
+    <MakeDir Directories="..\ConfuserEx\$(OutDir)zh-Hans" Condition="!Exists('..\ConfuserEx\$(OutDir)zh-Hans')" />
+    <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="..\ConfuserEx\$(OutDir)Plugins" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="True" />
+    <Copy SourceFiles="$(TargetDir)zh-Hans\$(TargetName).resources$(TargetExt)" DestinationFolder="..\ConfuserEx\$(OutDir)zh-Hans" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="True" />
   </Target>
 </Project>

@@ -34,8 +34,16 @@
   </ItemGroup>
 
   <Import Project="..\ConfuserEx.Common.targets" Condition="Exists('..\ConfuserEx.Common.targets')" />
+
   <Target Name="BuildAddition" AfterTargets="Build">
-    <MSBuild Projects="..\Confuser.CLI\Confuser.CLI.csproj" Properties="Configuration=$(Configuration)" Targets="Build" />
-    <MSBuild Projects="..\Additions\ConfuserEx.Additions.csproj" Properties="Configuration=$(Configuration)" Targets="Build" />
+    <ItemGroup>
+      <ProjectsToBuild Include="..\Confuser.CLI\Confuser.CLI.csproj" />
+      <ProjectsToBuild Include="..\Additions\ConfuserEx.Additions.csproj" />
+    </ItemGroup>
+    <MSBuild Projects="@(ProjectsToBuild)" Properties="Configuration=$(Configuration)" Targets="Build">
+      <!--<Output ItemName="ContentFiles" TaskParameter="TargetOutputs"/>-->
+    </MSBuild>
+    <!--<Message Text="@(ContentFiles->'%(RelativeDir)')"/>-->
   </Target>
+  <Import Project="NuGet\Nupkg.targets" Condition="Exists('NuGet\Nupkg.targets')" />
 </Project>

@@ -29,7 +29,7 @@
     <FilesToCopy Include="$(TargetDir)*.*" />
   </ItemGroup>
   <Target Name="输出必需文件" AfterTargets="CopyFilesToOutputDirectory">
-    <MakeDir Directories="$(SolutionDir)ConfuserEx\$(OutDir)" Condition="!Exists('$(SolutionDir)ConfuserEx\$(OutDir)')" />
-    <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="$(SolutionDir)ConfuserEx\$(OutDir)" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="True" />
+    <MakeDir Directories="..\ConfuserEx\$(OutDir)" Condition="!Exists('..\ConfuserEx\$(OutDir)')" />
+    <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="..\ConfuserEx\$(OutDir)" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="True" />
   </Target>
 </Project>

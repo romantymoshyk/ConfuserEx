@@ -179,7 +179,7 @@
     <value>伪造混淆器</value>
   </data>
   <data name="FakeObfuscatorAttributesPhase_InjectType_Debug" xml:space="preserve">
-    <value>新增属性</value>
+    <value>新增特性</value>
   </data>
   <data name="FakeObfuscatorProtection_Name" xml:space="preserve">
     <value>伪造混淆器保护(插件)</value>
