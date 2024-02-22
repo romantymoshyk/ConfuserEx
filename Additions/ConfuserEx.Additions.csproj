@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net461</TargetFrameworks>
+    <TargetFrameworks>net462</TargetFrameworks>
     <RootNamespace>ConfuserEx_Additions</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup Label="Nuget Dependencies">
-    <PackageReference Include="dnlib" Version="3.5.0" />
+    <PackageReference Include="dnlib" Version="3.6.0" />
   </ItemGroup>
   
   <ItemGroup>

@@ -14,7 +14,7 @@ WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and
   <PropertyGroup>
 
     <!-- ConfuserToolsPath -->
-    <ConfuserToolsPath Condition="'$(NuGetProjectStyle)' == 'PackageReference'">$(MSBuildThisFileDirectory)..\tools</ConfuserToolsPath>
+    <ConfuserToolsPath>$(MSBuildThisFileDirectory)..\tools</ConfuserToolsPath>
   </PropertyGroup>
 
   <PropertyGroup>
