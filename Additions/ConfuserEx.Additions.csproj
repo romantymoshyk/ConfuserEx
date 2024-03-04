@@ -14,10 +14,6 @@
     <None Include="Constant\Protection\a.cs" />
   </ItemGroup>
 
-  <ItemGroup Label="Nuget Dependencies">
-    <PackageReference Include="dnlib" Version="3.6.0" />
-  </ItemGroup>
-  
   <ItemGroup>
     <ProjectReference Include="..\Confuser.Core\Confuser.Core.csproj" />
     <ProjectReference Include="..\Confuser.DynCipher\Confuser.DynCipher.csproj" />
