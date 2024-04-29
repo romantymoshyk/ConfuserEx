@@ -163,7 +163,7 @@
     <value>Resolving dependencies...</value>
   </data>
   <data name="ConfuserEngine_Inspection_Failed_to_resolve_dependency" xml:space="preserve">
-    <value>Failed to resolve dependency of '{0}'</value>
+    <value>Failed to resolve dependency assembly '{1}' in module '{0}'</value>
   </data>
   <data name="ConfuserEngine_Inspection_Checking_Strong_Name" xml:space="preserve">
     <value>Checking Strong Name...</value>

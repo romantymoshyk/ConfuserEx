@@ -263,14 +263,10 @@ namespace Confuser.Core {
 		static void Inspection(ConfuserContext context) {
 			context.Logger.Info(Resources.ConfuserEngine_Inspection_Resolving_dependencies);
 			foreach (var dependency in context.Modules
-											  .SelectMany(module => module.GetAssemblyRefs().Select(asmRef => Tuple.Create(asmRef, module)))) {
-				try {
-					context.Resolver.ResolveThrow(dependency.Item1, dependency.Item2);
-				}
-				catch (AssemblyResolveException ex) {
-					context.Logger.ErrorException(string.Format(Resources.ConfuserEngine_Inspection_Failed_to_resolve_dependency, dependency.Item2.Name), ex);
-					throw new ConfuserException(ex);
-				}
+				         .SelectMany(module => module.GetAssemblyRefs().Select(asmRef => (asmRef, module)))) {
+				var assembly = context.Resolver.Resolve(dependency.asmRef, dependency.module);
+				if (assembly is null)
+					context.Logger.Warn(string.Format(Resources.ConfuserEngine_Inspection_Failed_to_resolve_dependency, dependency.module.Name, dependency.asmRef.Name));
 			}
 
 			context.Logger.Debug(Resources.ConfuserEngine_Inspection_Checking_Strong_Name);
@@ -539,7 +535,7 @@ namespace Confuser.Core {
 
 			if (context.Resolver != null) {
 				context.Logger.Error(Resources.ConfuserEngine_PrintEnvironmentInfo_Cached_assemblies);
-				foreach (AssemblyDef asm in context.InternalResolver.GetCachedAssemblies()) {
+				foreach (var asm in context.InternalResolver.GetCachedAssemblies().Where(a => !(a is null))) {
 					if (string.IsNullOrEmpty(asm.ManifestModule.Location))
 						context.Logger.ErrorFormat("    {0}", asm.FullName);
 					else

@@ -170,7 +170,7 @@
     <value>保护打包器子程序...</value>
   </data>
   <data name="ConfuserEngine_Inspection_Failed_to_resolve_dependency" xml:space="preserve">
-    <value>无法解析“{0}”的依赖项</value>
+    <value>无法解析模块“{0}”的依赖程序集“{1}”</value>
   </data>
   <data name="WatermarkingPhase_Execute_Watermarking" xml:space="preserve">
     <value>生成水印中...</value>
