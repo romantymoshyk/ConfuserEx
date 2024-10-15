@@ -17,6 +17,7 @@ using dnlib.DotNet.Writer;
 using dnlib.PE;
 using FileAttributes = dnlib.DotNet.FileAttributes;
 using SR = System.Reflection;
+using UnreachableException = Confuser.Core.UnreachableException;
 
 namespace Confuser.Protections {
 	internal class Compressor : Packer {

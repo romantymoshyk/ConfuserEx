@@ -536,6 +536,7 @@ namespace Confuser.Core {
 			if (context.Resolver != null) {
 				context.Logger.Error("Cached assemblies:");
 				foreach (AssemblyDef asm in context.InternalResolver.GetCachedAssemblies()) {
+					if (asm is null) continue;
 					if (string.IsNullOrEmpty(asm.ManifestModule.Location))
 						context.Logger.ErrorFormat("    {0}", asm.FullName);
 					else

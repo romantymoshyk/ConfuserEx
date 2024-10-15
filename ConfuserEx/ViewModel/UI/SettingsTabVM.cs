@@ -5,10 +5,10 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 using Confuser.Core;
 using Confuser.Core.Project;
 using ConfuserEx.Views;
-using GalaSoft.MvvmLight.CommandWpf;
 
 namespace ConfuserEx.ViewModel {
 	internal class SettingsTabVM : TabViewModel {

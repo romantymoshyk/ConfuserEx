@@ -9,6 +9,7 @@ using Confuser.Core;
 using Confuser.Renamer.Analyzers;
 using Confuser.Renamer.References;
 using dnlib.DotNet;
+using UnreachableException = Confuser.Core.UnreachableException;
 
 namespace Confuser.Renamer.BAML {
 	internal class BAMLAnalyzer {

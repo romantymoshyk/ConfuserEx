@@ -4,10 +4,11 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\ConfuserEx.snk</AssemblyOriginatorKeyFile>
+    <SelfContained>true</SelfContained>
   </PropertyGroup>
 
   <PropertyGroup Label="Assembly Information">
@@ -17,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup Label="Nuget Dependencies">
-    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
     <PackageReference Include="Ookii.Dialogs.Wpf" Version="4.0.0" />
   </ItemGroup>
   
@@ -29,6 +30,18 @@
   
   <ItemGroup>
     <Resource Include="Resources\*.png" />
+    <None Include="..\Confuser.DynCipher\bin\Debug\net8.0\Confuser.DynCipher.dll" Link="Confuser.DynCipher.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Confuser.DynCipher\bin\Debug\net8.0\Microsoft.DiaSymReader.Native.amd64.dll" Link="Microsoft.DiaSymReader.Native.amd64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Confuser.DynCipher\bin\Debug\net8.0\Microsoft.DiaSymReader.Native.x86.dll" Link="Microsoft.DiaSymReader.Native.x86.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Confuser.Runtime\bin\Debug\net8.0\Confuser.Runtime.dll" Link="Confuser.Runtime.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Resource Include="ConfuserEx.ico" />
     <Resource Include="Resources\FontAwesome.otf" />
   </ItemGroup>

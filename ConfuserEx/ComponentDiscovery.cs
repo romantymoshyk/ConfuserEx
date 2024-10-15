@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.Loader;
 using Confuser.Core;
 
 namespace ConfuserEx {
@@ -28,11 +29,25 @@ namespace ConfuserEx {
 		}
 
 		public static void LoadComponents(IList<ConfuserComponent> protections, IList<ConfuserComponent> packers, string pluginPath) {
+
 			var ctx = new CrossDomainContext(protections, packers, pluginPath);
-			AppDomain appDomain = AppDomain.CreateDomain("");
-			appDomain.SetData("ctx", ctx);
-			appDomain.DoCallBack(CrossDomainLoadComponents);
-			AppDomain.Unload(appDomain);
+			var domain = new AssemblyLoadContext(null);
+
+			Assembly assembly = domain.LoadFromAssemblyPath(ctx.PluginPath);
+			foreach (var module in assembly.GetLoadedModules())
+				foreach (var i in module.GetTypes()) {
+					if (i.IsAbstract || !PluginDiscovery.HasAccessibleDefConstructor(i))
+						continue;
+
+					if (typeof(Protection).IsAssignableFrom(i)) {
+						var prot = (Protection)Activator.CreateInstance(i);
+						ctx.AddProtection(Info.FromComponent(prot, ctx.PluginPath));
+					}
+					else if (typeof(Packer).IsAssignableFrom(i)) {
+						var packer = (Packer)Activator.CreateInstance(i);
+						ctx.AddPacker(Info.FromComponent(packer, ctx.PluginPath));
+					}
+				}
 		}
 
 		public static void RemoveComponents(IList<ConfuserComponent> protections, IList<ConfuserComponent> packers, string pluginPath) {

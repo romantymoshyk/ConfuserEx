@@ -5,9 +5,9 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.Input;
 using Confuser.Core;
 using Confuser.Core.Project;
-using GalaSoft.MvvmLight.CommandWpf;
 
 namespace ConfuserEx.ViewModel {
 	internal class ProtectTabVM : TabViewModel, ILogger {

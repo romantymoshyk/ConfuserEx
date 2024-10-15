@@ -6,9 +6,9 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Xml;
+using CommunityToolkit.Mvvm.Input;
 using Confuser.Core;
 using Confuser.Core.Project;
-using GalaSoft.MvvmLight.CommandWpf;
 using Ookii.Dialogs.Wpf;
 
 namespace ConfuserEx.ViewModel {
