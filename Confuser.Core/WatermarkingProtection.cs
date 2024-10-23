@@ -2,6 +2,10 @@
 using Confuser.Core.Services;
 using dnlib.DotNet;
 using dnlib.DotNet.Emit;
+using System;
+using System.IO;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace Confuser.Core {
 	public sealed class WatermarkingProtection : Protection {
