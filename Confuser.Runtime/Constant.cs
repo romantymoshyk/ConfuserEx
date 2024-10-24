@@ -33,7 +33,7 @@ namespace Confuser.Runtime {
 					o[d++] = (byte)(e >> 16);
 					o[d++] = (byte)(e >> 24);
 					k[j] ^= e;
-					k[j] = (k[j] >> 3) | (k[j] << (32 - 3)); // Rotate right by 3 bits
+					//k[j] = (k[j] >> 3) | (k[j] << (32 - 3)); // Rotate right by 3 bits
 				}
 				s += 0x10;
 			}

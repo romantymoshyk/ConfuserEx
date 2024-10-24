@@ -104,7 +104,7 @@ namespace Confuser.Protections.Constants {
 			while (buffIndex < compressedBuff.Length) {
 				uint[] enc = moduleCtx.ModeHandler.Encrypt(compressedBuff, buffIndex, key);
 				for (int j = 0; j < 0x10; j++) {
-					key[j] = (key[j] << 3) | (key[j] >> (32 - 3)); // Rotate left by 3 bits
+					//key[j] = (key[j] << 3) | (key[j] >> (32 - 3)); // Rotate left by 3 bits
 					key[j] ^= compressedBuff[buffIndex + j];
 				}
 				Buffer.BlockCopy(enc, 0, encryptedBuffer, buffIndex * 4, 0x40);
