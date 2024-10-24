@@ -93,9 +93,9 @@ namespace Confuser.Protections.Constants {
 			var key = new uint[0x10];
 			uint state = keySeed;
 			for (int i = 0; i < 0x10; i++) {
-				state ^= state >> 12;
-				state ^= state << 25;
-				state ^= state >> 27;
+				state ^= state >> 13;
+				state ^= state << 21;
+				state ^= (state >> 9) ^ 0xA5A5A5A5; // Add XOR with custom constant
 				key[i] = state;
 			}
 
@@ -103,8 +103,10 @@ namespace Confuser.Protections.Constants {
 			buffIndex = 0;
 			while (buffIndex < compressedBuff.Length) {
 				uint[] enc = moduleCtx.ModeHandler.Encrypt(compressedBuff, buffIndex, key);
-				for (int j = 0; j < 0x10; j++)
+				for (int j = 0; j < 0x10; j++) {
+					key[j] = (key[j] << 3) | (key[j] >> (32 - 3)); // Rotate left by 3 bits
 					key[j] ^= compressedBuff[buffIndex + j];
+				}
 				Buffer.BlockCopy(enc, 0, encryptedBuffer, buffIndex * 4, 0x40);
 				buffIndex += 0x10;
 			}
