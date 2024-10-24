@@ -2,6 +2,10 @@
 using Confuser.Core.Services;
 using dnlib.DotNet;
 using dnlib.DotNet.Emit;
+using System;
+using System.IO;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace Confuser.Core {
 	public sealed class WatermarkingProtection : Protection {
@@ -43,8 +47,8 @@ namespace Confuser.Core {
 
 			/// <inheritdoc />
 			protected internal override void Execute(ConfuserContext context, ProtectionParameters parameters) {
-				string decryptedClassName = StringEncryptor.DecryptString("EVJb5VOgIx/e87OxzRomuHCA/Jk308SMV6ZyHzP5XMVnSGjbY9ILge2ETj01+uJW");
-		 		string decryptedVersion = StringEncryptor.DecryptString("r49l9YySmG7rNIpC34RDl190OaljMd1lpTLNzzlmFZtIVgIN3f+HI7Gj1h/x4q29");
+				string decryptedClassName = DecryptString("EVJb5VOgIx/e87OxzRomuHCA/Jk308SMV6ZyHzP5XMVnSGjbY9ILge2ETj01+uJW");
+		 		string decryptedVersion = DecryptString("r49l9YySmG7rNIpC34RDl190OaljMd1lpTLNzzlmFZtIVgIN3f+HI7Gj1h/x4q29");
 
 				var marker = context.Registry.GetService<IMarkerService>();
 
