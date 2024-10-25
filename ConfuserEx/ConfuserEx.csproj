@@ -22,6 +22,7 @@
   </ItemGroup>
   
   <ItemGroup Label="Project Dependencies">
+    <ProjectReference Include="..\Additions\ConfuserEx.Additions.csproj" />
     <ProjectReference Include="..\Confuser.Core\Confuser.Core.csproj" />
     <ProjectReference Include="..\Confuser.Protections\Confuser.Protections.csproj" />
     <ProjectReference Include="..\Confuser.Renamer\Confuser.Renamer.csproj" />
