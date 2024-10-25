@@ -7,11 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Constant\Protection\a.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Constant\Protection\a.cs" />
+    <Compile Remove="Constant\**" />
+    <EmbeddedResource Remove="Constant\**" />
+    <None Remove="Constant\**" />
   </ItemGroup>
 
   <ItemGroup>
