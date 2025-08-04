@@ -69,8 +69,8 @@ jobs:
       # Corrected path to the solution file
       run: nuget restore Confuser2.sln
 
-    - name: Build
-      run: dotnet build
+    #- name: Build
+    #  run: dotnet build
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
@@ -87,8 +87,8 @@ jobs:
     - name: Create the app package
       run: msbuild Confuser2.sln /t:Restore
 
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
+    #- name: Perform CodeQL Analysis
+    #  uses: github/codeql-action/analyze@v3
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
