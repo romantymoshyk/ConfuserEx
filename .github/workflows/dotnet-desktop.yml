@@ -43,19 +43,19 @@ jobs:
         fetch-depth: 0
         
     - name: Download .NET 4.6.1 targeting pack
-      uses: suisei-cn/actions-download-file@1.6
+      uses: suisei-cn/actions-download-file@818d6b7dc8fe73f2f924b6241f2b1134ca1377d9 
       with:
           url: "https://download.microsoft.com/download/F/1/D/F1DEB8DB-D277-4EF9-9F48-3A65D4D8F965/NDP461-DevPack-KB3105179-ENU.exe"
           target: public/
 
     - name: Download .NET 4.6.2 targeting pack
-      uses: suisei-cn/actions-download-file@1.6
+      uses: suisei-cn/actions-download-file@818d6b7dc8fe73f2f924b6241f2b1134ca1377d9 
       with:
           url: "https://download.microsoft.com/download/e/e/c/eec79116-8305-4bd0-aa83-27610987eec6/NDP462-DevPack-KB3151934-ENU.exe"
           target: public/
 
     - name: Download .NET 3.5 targeting pack
-      uses: suisei-cn/actions-download-file@1.6
+      uses: suisei-cn/actions-download-file@818d6b7dc8fe73f2f924b6241f2b1134ca1377d9 
       with:
           url: "https://download.visualstudio.microsoft.com/download/pr/b635098a-2d1d-4142-bef6-d237545123cb/2651b87007440a15209cac29634a4e45/dotnetfx35.exe"
           target: public/
