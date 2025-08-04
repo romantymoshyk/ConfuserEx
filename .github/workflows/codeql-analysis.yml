@@ -22,19 +22,19 @@ jobs:
       fail-fast: false
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          submodules: recursive
+     # - name: Checkout repository
+     #   uses: actions/checkout@v2
+     #   with:
+     #     fetch-depth: 0
+     #     submodules: recursive
 
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: csharp
+     # - name: Initialize CodeQL
+     #   uses: github/codeql-action/init@v3
+     #   with:
+     #     languages: csharp
 
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v3
+     # - name: Autobuild
+     #   uses: github/codeql-action/autobuild@v3
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
