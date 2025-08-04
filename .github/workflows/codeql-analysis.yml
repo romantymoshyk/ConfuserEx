@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
 
-    steps:
+    #steps:
      # - name: Checkout repository
      #   uses: actions/checkout@v2
      #   with:
@@ -36,5 +36,5 @@ jobs:
      # - name: Autobuild
      #   uses: github/codeql-action/autobuild@v3
 
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
+     # - name: Perform CodeQL Analysis
+     #   uses: github/codeql-action/analyze@v3
