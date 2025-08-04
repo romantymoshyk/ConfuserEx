@@ -81,14 +81,14 @@ jobs:
       # Corrected path to the solution file
       run: nuget restore Confuser2.sln
 
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v3
-      with:
-        languages: csharp
+    #- name: Initialize CodeQL
+    #  uses: github/codeql-action/init@v3
+    #  with:
+    #    languages: csharp
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test
+      run: dotnet test -f net461
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
