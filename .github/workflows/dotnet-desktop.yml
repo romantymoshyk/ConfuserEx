@@ -95,7 +95,7 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test -f net461
+      run: dotnet test
       continue-on-error: true
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
