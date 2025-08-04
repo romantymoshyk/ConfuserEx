@@ -98,7 +98,7 @@ jobs:
         Configuration: Release
         
     - name: Build
-      run: msbuild $env:SolutionPath /t:rebuild /p:Configuration=$env:Configuration /p:Platform="Any CPU"
+      run: msbuild $env:SolutionPath /t:rebuild /p:Configuration=$env:Configuration
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
@@ -110,4 +110,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: MSIX Package
-        path: ${{ env.Wap_Project_Directory }}\AppPackages
+        path: ${{ env.Wap_Project_Directory }}\Release
