@@ -14,24 +14,6 @@
 # GitHub sets default environment variables for every workflow run.
 # Replace the variables relative to your project in the "env" section below.
 #
-# 2. Signing
-# Generate a signing certificate in the Windows Application
-# Packaging Project or add an existing signing certificate to the project.
-# Next, use PowerShell to encode the .pfx file using Base64 encoding
-# by running the following Powershell script to generate the output string:
-#
-# $pfx_cert = Get-Content '.\SigningCertificate.pfx' -Encoding Byte
-# [System.Convert]::ToBase64String($pfx_cert) | Out-File 'SigningCertificate_Encoded.txt'
-#
-# Open the output file, SigningCertificate_Encoded.txt, and copy the
-# string inside. Then, add the string to the repo as a GitHub secret
-# and name it "Base64_Encoded_Pfx."
-# For more information on how to configure your signing certificate for
-# this workflow, refer to https://github.com/microsoft/github-actions-for-desktop-apps#signing
-#
-# Finally, add the signing certificate password to the repo as a secret and name it "Pfx_Key".
-# See "Build the Windows Application Packaging project" below to see how the secret is used.
-#
 # For more information on GitHub Actions, refer to https://github.com/features/actions
 # For a complete CI/CD sample to get started with GitHub Action workflows for Desktop Applications,
 # refer to https://github.com/microsoft/github-actions-for-desktop-apps
@@ -59,6 +41,18 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
+        
+    - name: Download 461 targeting pack
+      uses: suisei-cn/actions-download-file@818d6b7dc8fe73f2f924b6241f2b1134ca1377d9 # 1.6.0
+      id: downloadfile  # Remember to give an ID if you need the output filename
+      with:
+          url: "https://download.microsoft.com/download/F/1/D/F1DEB8DB-D277-4EF9-9F48-3A65D4D8F965/NDP461-DevPack-KB3105179-ENU.exe"
+          target: public/
+
+    - name: Install targeting pack
+      shell: cmd
+      working-directory: public
+      run: NDP461-DevPack-KB3105179-ENU.exe /q
 
     # Install the .NET Core workload
     - name: Install .NET Core
