@@ -16,7 +16,7 @@ permissions:
 jobs:
   analyze:
     name: Analyze
-    runs-on: windows-2019
+    runs-on: windows-latest
 
     strategy:
       fail-fast: false
