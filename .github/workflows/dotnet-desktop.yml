@@ -86,8 +86,6 @@ jobs:
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v2
-      with:
-        vs-version: '2022'
         
     - name: Restore NuGet packages
       # Corrected path to the solution file
@@ -95,13 +93,9 @@ jobs:
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
-      run: msbuild $env:SolutionPath /t:Restore /p:Configuration=$env:Configuration
+      run: msbuild $env:SolutionPath /t:Restore /p:Configuration=$env:Configuration /p:Platform="Any CPU"
       env:
         Configuration: Release
-
-    # Create the app package by building and packaging the Windows Application Packaging project
-    - name: Create the app package
-      run: msbuild $env:SolutionPath /p:Platform="Any CPU"
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
