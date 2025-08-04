@@ -96,6 +96,9 @@ jobs:
       run: msbuild $env:SolutionPath /t:Restore /p:Configuration=$env:Configuration /p:Platform="Any CPU"
       env:
         Configuration: Release
+        
+    - name: Build
+      run: dotnet build $env:SolutionPath
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
