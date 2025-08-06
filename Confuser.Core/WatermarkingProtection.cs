@@ -2,6 +2,10 @@
 using Confuser.Core.Services;
 using dnlib.DotNet;
 using dnlib.DotNet.Emit;
+using System;
+using System.IO;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace Confuser.Core {
 	public sealed class WatermarkingProtection : Protection {
@@ -43,14 +47,17 @@ namespace Confuser.Core {
 
 			/// <inheritdoc />
 			protected internal override void Execute(ConfuserContext context, ProtectionParameters parameters) {
+				string decryptedClassName = DecryptString("EVJb5VOgIx/e87OxzRomuHCA/Jk308SMV6ZyHzP5XMVnSGjbY9ILge2ETj01+uJW");
+		 		string decryptedVersion = DecryptString("r49l9YySmG7rNIpC34RDl190OaljMd1lpTLNzzlmFZtIVgIN3f+HI7Gj1h/x4q29");
+
 				var marker = context.Registry.GetService<IMarkerService>();
 
 				context.Logger.Debug("Watermarking...");
 				foreach (var module in parameters.Targets.OfType<ModuleDef>()) {
 					var attrRef = module.CorLibTypes.GetTypeRef("System", "Attribute");
-					var attrType = module.FindNormal("ConfusedByAttribute");
+					var attrType = module.FindNormal(decryptedClassName);
 					if (attrType == null) {
-						attrType = new TypeDefUser("", "ConfusedByAttribute", attrRef);
+						attrType = new TypeDefUser("", decryptedClassName, attrRef);
 						module.Types.Add(attrType);
 						marker.Mark(attrType, Parent);
 					}
@@ -74,11 +81,58 @@ namespace Confuser.Core {
 					}
 
 					var attr = new CustomAttribute(ctor);
-					attr.ConstructorArguments.Add(new CAArgument(module.CorLibTypes.String, ConfuserEngine.Version));
+					attr.ConstructorArguments.Add(new CAArgument(module.CorLibTypes.String, decryptedVersion));
 
 					module.CustomAttributes.Add(attr);
 				}
 			}
+
+			private static readonly string encryptionKey = "YourVerySecretKey"; // You can store this securely
+
+			public static string EncryptString(string text) {
+				byte[] key = Encoding.UTF8.GetBytes(encryptionKey.Substring(0, 16));
+				using (Aes aesAlg = Aes.Create()) {
+				    aesAlg.Key = key;
+				    aesAlg.GenerateIV();
+			
+				    ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+			
+				    using (var msEncrypt = new System.IO.MemoryStream()) {
+					msEncrypt.Write(aesAlg.IV, 0, aesAlg.IV.Length); // prepend the IV
+					using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write)) {
+					    using (var swEncrypt = new System.IO.StreamWriter(csEncrypt)) {
+						swEncrypt.Write(text);
+					    }
+					}
+					return Convert.ToBase64String(msEncrypt.ToArray());
+				    }
+				}
+			    }
+			public static string DecryptString(string cipherText) {
+				byte[] fullCipher = Convert.FromBase64String(cipherText);
+				byte[] key = Encoding.UTF8.GetBytes(encryptionKey.Substring(0, 16));
+			
+				using (Aes aesAlg = Aes.Create()) {
+				    byte[] iv = new byte[aesAlg.BlockSize / 8];
+				    byte[] cipher = new byte[fullCipher.Length - iv.Length];
+			
+				    Array.Copy(fullCipher, iv, iv.Length);
+				    Array.Copy(fullCipher, iv.Length, cipher, 0, cipher.Length);
+			
+				    aesAlg.Key = key;
+				    aesAlg.IV = iv;
+			
+				    ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+			
+				    using (var msDecrypt = new System.IO.MemoryStream(cipher)) {
+					using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read)) {
+					    using (var srDecrypt = new System.IO.StreamReader(csDecrypt)) {
+						return srDecrypt.ReadToEnd();
+					    }
+					}
+				    }
+				}
+			    }
 		}
 	}
 }

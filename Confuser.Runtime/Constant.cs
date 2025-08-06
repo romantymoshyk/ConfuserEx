@@ -13,9 +13,9 @@ namespace Confuser.Runtime {
 			var k = new uint[0x10];
 			var n = (uint)Mutation.KeyI1;
 			for (int i = 0; i < 0x10; i++) {
-				n ^= n >> 12;
-				n ^= n << 25;
-				n ^= n >> 27;
+				n ^= n >> 13;   // Changed shift values
+				n ^= n << 21;   // New left shift operation
+				n ^= (n >> 9) ^ 0xA5A5A5A5; // Add XOR with custom constant
 				k[i] = n;
 			}
 
@@ -32,7 +32,7 @@ namespace Confuser.Runtime {
 					o[d++] = (byte)(e >> 8);
 					o[d++] = (byte)(e >> 16);
 					o[d++] = (byte)(e >> 24);
-					k[j] ^= e;
+					k[j] ^= (e ^ 0x12345678);  // Reverse the XOR with the custom constant
 				}
 				s += 0x10;
 			}
