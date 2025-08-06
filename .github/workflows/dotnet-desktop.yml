@@ -112,17 +112,17 @@ jobs:
         
     - name: Restore NuGet packages
       # Corrected path to the solution file
-      run: nuget restore $env:SolutionPath
+      run: nuget restore ${{ env.SolutionPath }}
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
-      run: msbuild $env:SolutionPath /t:Restore /p:Configuration=$env:Configuration /p:Platform="Any CPU"
+      run: msbuild ${{ env.SolutionPath }} /t:Restore /p:Configuration=${{ env.Configuration }} /p:Platform=x64
       env:
         Configuration: Release
 
     - name: Build
       #run: dotnet build -c release /p:Configuration=$env:Configuration -p:Platform="Any CPU" -o "Release"
-      run: msbuild ${{ env.SolutionPath }} /p:Configuration=${{ env.Configuration }};Platform="Any CPU" /p:OutputPath="${{ env.GITHUB_WORKSPACE }}\release"
+      run: msbuild ${{ env.SolutionPath }} /p:Configuration=${{ env.Configuration }} /p:Platform=x64 /p:OutputPath="${{ env.GITHUB_WORKSPACE }}\release"
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
@@ -133,5 +133,5 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: MSIX Package
-        path: ${{ env.Wap_Project_Directory }}\Release
+        name: Package
+        path: ${{ env.GITHUB_WORKSPACE }}\release
