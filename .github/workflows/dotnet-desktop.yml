@@ -70,7 +70,7 @@ jobs:
       id: exists_NDP461_DevPack
       shell: pwsh # Use PowerShell for Windows
       run: |
-        $filePath = "public/NDP461-DevPack-KB3105179-ENU.exe" # Adjust path as needed
+        $filePath = "public/NDP461-DevPack-KB3105179-ENU.exe"
         if (Test-Path $filePath) {
             echo "file_exists=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
         } else {
@@ -81,7 +81,7 @@ jobs:
       id: exists_dotnetfx35
       shell: pwsh # Use PowerShell for Windows
       run: |
-        $filePath = "public/NDP461-DevPack-KB3105179-ENU.exe" # Adjust path as needed
+        $filePath = "public/dotnetfx35.exe"
         if (Test-Path $filePath) {
             echo "file_exists=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
         } else {
