@@ -64,7 +64,9 @@ namespace Confuser.Protections.ReferenceProxy {
 		public override void ProcessCall(RPContext ctx, int instrIndex) {
 			Instruction invoke = ctx.Body.Instructions[instrIndex];
 
-			TypeDef declType = ((IMethod)invoke.Operand).DeclaringType.ResolveTypeDefThrow();
+			TypeDef declType = ((IMethod)invoke.Operand).DeclaringType.ResolveTypeDef();
+			if (declType == null)
+				return;
 			if (!declType.Module.IsILOnly) // Reflection doesn't like mixed mode modules.
 				return;
 			if (declType.IsGlobalModuleType) // Reflection doesn't like global methods too.
@@ -88,7 +90,9 @@ namespace Confuser.Protections.ReferenceProxy {
 			Instruction instr = ctx.Body.Instructions[instrIndex];
 			var target = (IMethod)instr.Operand;
 
-			TypeDef declType = target.DeclaringType.ResolveTypeDefThrow();
+			var declType = target.DeclaringType.ResolveTypeDef();
+			if (declType == null)
+				return;
 			if (!declType.Module.IsILOnly) // Reflection doesn't like mixed mode modules.
 				return;
 			if (declType.IsGlobalModuleType) // Reflection doesn't like global methods too.

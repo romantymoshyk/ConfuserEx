@@ -19,7 +19,7 @@ namespace Confuser.Protections.ReferenceProxy {
 		}
 
 		public override string Name {
-			get { return "Encoding reference proxies"; }
+			get { return Properties.Resources.ReferenceProxyPhaseName; }
 		}
 
 		RPContext ParseParameters(MethodDef method, ConfuserContext context, ProtectionParameters parameters, RPStore store) {
@@ -147,7 +147,8 @@ namespace Confuser.Protections.ReferenceProxy {
 					if (operand.MethodSig.ParamsAfterSentinel != null &&
 						operand.MethodSig.ParamsAfterSentinel.Count > 0)
 						continue;
-					TypeDef declType = operand.DeclaringType.ResolveTypeDefThrow();
+					var declType = operand.DeclaringType.ResolveTypeDef();
+					if (declType is null) continue;
 					// No delegates
 					if (declType.IsDelegate())
 						continue;

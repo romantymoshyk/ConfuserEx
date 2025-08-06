@@ -13,8 +13,12 @@ namespace Confuser.Protections.ReferenceProxy {
 			Instruction invoke = ctx.Body.Instructions[instrIndex];
 			var target = (IMethod)invoke.Operand;
 
+
 			// Value type proxy is not supported in mild mode.
-			if (target.DeclaringType.ResolveTypeDefThrow().IsValueType)
+			var typeDef = target.DeclaringType.ResolveTypeDef();
+			if (typeDef == null)
+				return;
+			if (typeDef.IsValueType)
 				return;
 			// Skipping visibility is not supported in mild mode.
 			if (!target.ResolveThrow().IsPublic && !target.ResolveThrow().IsAssembly)
