@@ -126,7 +126,7 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test --verbosity normal --no-build $env:SolutionPath
+      run: dotnet test --verbosity normal --no-build ${{ env.SolutionPath }}
       continue-on-error: true
       
     # Upload the package: https://github.com/marketplace/actions/upload-a-build-artifact
