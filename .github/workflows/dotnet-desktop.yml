@@ -103,7 +103,7 @@ jobs:
 
     - name: Build
       #run: dotnet build -c release /p:Configuration=$env:Configuration -p:Platform="Any CPU" -o "Release"
-      run: msbuild $env:SolutionPath /p:Configuration=$env:Configuration;Platform="Any CPU" /p:OutputPath="$env:GITHUB_WORKSPACE\release"
+      run: msbuild ${{ env.SolutionPath }} /p:Configuration=${{ env.Configuration }};Platform="Any CPU" /p:OutputPath="${{ env.GITHUB_WORKSPACE }}\release"
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
