@@ -5,6 +5,7 @@ using System.Linq;
 using Confuser.Core;
 using dnlib.DotNet;
 using ILogger = Confuser.Core.ILogger;
+using UnreachableException = Confuser.Core.UnreachableException;
 
 namespace Confuser.Renamer {
 	public class VTableSignature {

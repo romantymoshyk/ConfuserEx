@@ -51,11 +51,13 @@ namespace ConfuserEx.ViewModel {
 			set { SetProperty(ref error, value, "ExpressionError"); }
 		}
 
-		public ProtectionPreset Preset {
-			get { return rule.Preset; }
+		public string Preset {
+			get { return rule.Preset.ToString(); }
 			set {
-				if (SetProperty(rule.Preset != value, val => rule.Preset = val, value, "Preset"))
-					parent.IsModified = true;
+				if (Enum.TryParse<ProtectionPreset>(value, out var value1)) {
+					if (SetProperty(rule.Preset != value1, val => rule.Preset = val, value1, "Preset"))
+						parent.IsModified = true;
+				}				
 			}
 		}
 

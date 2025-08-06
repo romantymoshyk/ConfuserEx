@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 using ConfuserEx.ViewModel;
-using GalaSoft.MvvmLight.CommandWpf;
 
 namespace ConfuserEx {
 	public class FileDragDrop {
 		public static readonly DependencyProperty CommandProperty =
 			DependencyProperty.RegisterAttached("Command", typeof(ICommand), typeof(FileDragDrop), new UIPropertyMetadata(null, OnCommandChanged));
 
-		public static ICommand FileCmd = new DragDropCommand(
+		public static ICommand FileCmd = DragDropCommand.CreateDragDropCommand(
 			data => {
 				Debug.Assert(data.Item2.GetDataPresent(DataFormats.FileDrop));
 				if (data.Item1 is TextBox) {
@@ -38,7 +39,7 @@ namespace ConfuserEx {
 			});
 
 
-		public static ICommand DirectoryCmd = new DragDropCommand(
+		public static ICommand DirectoryCmd = DragDropCommand.CreateDragDropCommand(
 			data => {
 				Debug.Assert(data.Item2.GetDataPresent(DataFormats.FileDrop));
 				if (data.Item1 is TextBox) {
@@ -86,7 +87,7 @@ namespace ConfuserEx {
 		static void OnDragOver(object sender, DragEventArgs e) {
 			ICommand cmd = GetCommand((DependencyObject)sender);
 			e.Effects = DragDropEffects.None;
-			if (cmd is DragDropCommand) {
+			if (DragDropCommand.IsDragDropCommand(cmd)) {
 				if (cmd.CanExecute(Tuple.Create((UIElement)sender, e.Data)))
 					e.Effects = DragDropEffects.Link;
 			}
@@ -99,7 +100,7 @@ namespace ConfuserEx {
 
 		static void OnDrop(object sender, DragEventArgs e) {
 			ICommand cmd = GetCommand((DependencyObject)sender);
-			if (cmd is DragDropCommand) {
+			if (DragDropCommand.IsDragDropCommand(cmd)) {
 				if (cmd.CanExecute(Tuple.Create((UIElement)sender, e.Data)))
 					cmd.Execute(Tuple.Create((UIElement)sender, e.Data));
 			}
@@ -110,10 +111,18 @@ namespace ConfuserEx {
 			e.Handled = true;
 		}
 
+		public static class DragDropCommand
+		{
+			public static RelayCommand<Tuple<UIElement, IDataObject>> CreateDragDropCommand(Action<Tuple<UIElement, IDataObject>> execute, Func<Tuple<UIElement, IDataObject>, bool> canExecute)
+			{
+				return new RelayCommand<Tuple<UIElement, IDataObject>>(execute, value => canExecute(value));
+			}
 
-		class DragDropCommand : RelayCommand<Tuple<UIElement, IDataObject>> {
-			public DragDropCommand(Action<Tuple<UIElement, IDataObject>> execute, Func<Tuple<UIElement, IDataObject>, bool> canExecute)
-				: base(execute, canExecute) { }
+			public static bool IsDragDropCommand(ICommand command)
+			{
+				if (command is RelayCommand<Tuple<UIElement, IDataObject>>) return true;
+				return false;
+			}
 		}
 	}
 }

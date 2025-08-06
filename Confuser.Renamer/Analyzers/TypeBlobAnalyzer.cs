@@ -7,6 +7,7 @@ using Confuser.Renamer.References;
 using dnlib.DotNet;
 using dnlib.DotNet.Emit;
 using dnlib.DotNet.MD;
+using UnreachableException = Confuser.Core.UnreachableException;
 
 namespace Confuser.Renamer.Analyzers {
 	public sealed class TypeBlobAnalyzer : IRenamer {
