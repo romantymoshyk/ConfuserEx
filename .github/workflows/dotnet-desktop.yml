@@ -150,9 +150,9 @@ jobs:
       with:
         name: ConfuserEx.CLI
         path: |
-          Confuser.CLI\bin\${{ env.Configuration }}\net461
-          !Confuser.CLI\bin\${{ env.Configuration }}\net461\*.pdb
-          !Confuser.CLI\bin\${{ env.Configuration }}\net461\*.xml
+          Confuser.CLI\bin\${{ env.Configuration }}\net*
+          !Confuser.CLI\bin\${{ env.Configuration }}\net*\*.pdb
+          !Confuser.CLI\bin\${{ env.Configuration }}\net*\*.xml
         
 
     # Upload the package: https://github.com/marketplace/actions/upload-a-build-artifact
@@ -161,7 +161,7 @@ jobs:
       with:
         name: ConfuserEx
         path: |
-          ConfuserEx\bin\${{ env.Configuration }}\net461
-          !ConfuserEx\bin\${{ env.Configuration }}\net461\*.pdb
-          !ConfuserEx\bin\${{ env.Configuration }}\net461\*.xml
+          ConfuserEx\bin\${{ env.Configuration }}\net*
+          !ConfuserEx\bin\${{ env.Configuration }}\net*\*.pdb
+          !ConfuserEx\bin\${{ env.Configuration }}\net*\*.xml
   
