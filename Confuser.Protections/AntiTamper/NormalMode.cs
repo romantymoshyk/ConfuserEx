@@ -12,6 +12,7 @@ using dnlib.DotNet;
 using dnlib.DotNet.Emit;
 using dnlib.DotNet.Writer;
 using MethodBody = dnlib.DotNet.Writer.MethodBody;
+using UnreachableException = Confuser.Core.UnreachableException;
 
 namespace Confuser.Protections.AntiTamper {
 	internal class NormalMode : IModeHandler {

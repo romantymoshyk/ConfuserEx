@@ -4,6 +4,7 @@ using System.Diagnostics;
 using Confuser.Core;
 using Confuser.Core.Services;
 using Confuser.DynCipher.AST;
+using UnreachableException = Confuser.Core.UnreachableException;
 
 namespace Confuser.DynCipher.Generation {
 	internal class ExpressionGenerator {

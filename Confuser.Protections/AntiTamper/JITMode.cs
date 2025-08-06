@@ -12,6 +12,7 @@ using dnlib.DotNet;
 using dnlib.DotNet.Emit;
 using dnlib.DotNet.MD;
 using dnlib.DotNet.Writer;
+using UnreachableException = Confuser.Core.UnreachableException;
 
 namespace Confuser.Protections.AntiTamper {
 	internal class JITMode : IModeHandler {

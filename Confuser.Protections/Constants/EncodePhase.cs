@@ -10,6 +10,7 @@ using Confuser.Core.Helpers;
 using Confuser.Core.Services;
 using dnlib.DotNet;
 using dnlib.DotNet.Emit;
+using UnreachableException = Confuser.Core.UnreachableException;
 
 namespace Confuser.Protections.Constants {
 	internal class EncodePhase : ProtectionPhase {

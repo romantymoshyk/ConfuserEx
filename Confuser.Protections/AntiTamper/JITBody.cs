@@ -104,7 +104,9 @@ namespace Confuser.Protections.AntiTamper {
 				counter ^= (state >> 5) | (state << 27);
 			}
 		}
-  }
+
+		public uint CalculateAlignment() => 0;
+	}
 
 	internal class JITMethodBodyWriter : MethodBodyWriterBase {
 		readonly CilBody body;
@@ -251,5 +253,7 @@ namespace Confuser.Protections.AntiTamper {
 				offset += entry.Value.GetFileLength();
 			}
 		}
+
+		public uint CalculateAlignment() => 0;
 	}
 }

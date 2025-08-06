@@ -10,6 +10,7 @@ using Confuser.Renamer;
 using dnlib.DotNet;
 using dnlib.DotNet.Emit;
 using dnlib.DotNet.MD;
+using UnreachableException = Confuser.Core.UnreachableException;
 
 namespace Confuser.Protections.Constants {
 	internal class InjectPhase : ProtectionPhase {
