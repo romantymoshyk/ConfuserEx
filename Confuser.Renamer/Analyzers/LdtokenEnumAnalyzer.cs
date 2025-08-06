@@ -38,9 +38,9 @@ namespace Confuser.Renamer.Analyzers {
 					}
 					else if (instr.Operand is ITypeDefOrRef) {
 						if (!(instr.Operand is TypeSpec)) {
-							TypeDef type = ((ITypeDefOrRef)instr.Operand).ResolveTypeDefThrow();
-							if (context.Modules.Contains((ModuleDefMD)type.Module) &&
-							    HandleTypeOf(context, service, method, i)) {
+							var type = ((ITypeDefOrRef)instr.Operand).ResolveTypeDef();
+							if (!(type is null) && context.Modules.Contains((ModuleDefMD)type.Module) &&
+								  HandleTypeOf(context, service, method, i)) {
 								var t = type;
 								do {
 									DisableRename(service, t, false);
@@ -112,7 +112,7 @@ namespace Confuser.Renamer.Analyzers {
 				if (targetTypeRef == null)
 					return;
 
-				TypeDef targetTypeDef = targetTypeRef.ResolveTypeDefThrow();
+				var targetTypeDef = targetTypeRef.ResolveTypeDef();
 				if (targetTypeDef != null && targetTypeDef.IsEnum && context.Modules.Contains((ModuleDefMD)targetTypeDef.Module))
 					DisableRename(service, targetTypeDef);
 			}

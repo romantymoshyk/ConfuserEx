@@ -61,7 +61,7 @@ namespace Confuser.CLI {
 						var xmlDoc = new XmlDocument();
 						xmlDoc.Load(files[0]);
 						proj.Load(xmlDoc);
-						proj.BaseDirectory = Path.Combine(Path.GetDirectoryName(files[0]), proj.BaseDirectory);
+						proj.Load(xmlDoc, Path.GetDirectoryName(files[0]));
 					}
 					catch (Exception ex) {
 						WriteLineWithColor(ConsoleColor.Red, "Failed to load project:");
