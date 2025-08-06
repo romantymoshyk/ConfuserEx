@@ -45,7 +45,26 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-        
+
+    - name: Cache NuGet packages
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.nuget/packages
+#          !~/.nuget/packages/unwanted_package # Optional: Exclude specific packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+
+    - name: Cache .NET installers
+      uses: actions/cache@v4
+      with:
+        path: |
+          public/
+        key: ${{ runner.os }}-dotnet
+        restore-keys: |
+          ${{ runner.os }}-dotnetdevpack-
+
     - name: Download .NET 4.6.1 targeting pack
       uses: suisei-cn/actions-download-file@818d6b7dc8fe73f2f924b6241f2b1134ca1377d9 
       with:
