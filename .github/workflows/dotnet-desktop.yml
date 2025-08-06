@@ -1,0 +1,167 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# This workflow will build, test, sign and package a WPF or Windows Forms desktop application
+# built on .NET Core.
+# To learn how to migrate your existing application to .NET Core,
+# refer to https://docs.microsoft.com/en-us/dotnet/desktop-wpf/migration/convert-project-from-net-framework
+#
+# To configure this workflow:
+#
+# 1. Configure environment variables
+# GitHub sets default environment variables for every workflow run.
+# Replace the variables relative to your project in the "env" section below.
+#
+# For more information on GitHub Actions, refer to https://github.com/features/actions
+# For a complete CI/CD sample to get started with GitHub Action workflows for Desktop Applications,
+# refer to https://github.com/microsoft/github-actions-for-desktop-apps
+
+name: Build .NET
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    strategy:
+      matrix:
+        configuration: [Release]
+
+    runs-on: windows-latest  # For a list of available runner types, refer to
+                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+    env: 
+      Configuration: Release
+      SolutionPath: Confuser2.sln
+        
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Cache NuGet packages
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.nuget/packages
+#          !~/.nuget/packages/unwanted_package # Optional: Exclude specific packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+
+    - name: Cache .NET installers
+      uses: actions/cache@v4
+      with:
+        path: |
+          public/
+        key: ${{ runner.os }}-dotnet
+        restore-keys: |
+          ${{ runner.os }}-dotnetdevpack-
+
+
+    - name: Check if exists .NET 4.6.1 installer
+      id: exists_NDP461_DevPack
+      shell: pwsh # Use PowerShell for Windows
+      run: |
+        $filePath = "public/NDP461-DevPack-KB3105179-ENU.exe"
+        if (Test-Path $filePath) {
+            echo "file_exists=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        } else {
+            echo "file_exists=false" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        }
+
+    - name: Check if exists.NET 3.5 installer
+      id: exists_dotnetfx35
+      shell: pwsh # Use PowerShell for Windows
+      run: |
+        $filePath = "public/dotnetfx35.exe"
+        if (Test-Path $filePath) {
+            echo "file_exists=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        } else {
+            echo "file_exists=false" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        }
+
+    - name: Download .NET 4.6.1 targeting pack
+      uses: suisei-cn/actions-download-file@818d6b7dc8fe73f2f924b6241f2b1134ca1377d9 
+      with:
+          url: "https://download.microsoft.com/download/F/1/D/F1DEB8DB-D277-4EF9-9F48-3A65D4D8F965/NDP461-DevPack-KB3105179-ENU.exe"
+          target: public/
+      if: ${{ steps.exists_NDP461_DevPack.outputs.file_exists == 'false' }}
+
+#    - name: Download .NET 4.6.2 targeting pack
+#      uses: suisei-cn/actions-download-file@818d6b7dc8fe73f2f924b6241f2b1134ca1377d9 
+#      with:
+#          url: "https://download.microsoft.com/download/e/e/c/eec79116-8305-4bd0-aa83-27610987eec6/NDP462-DevPack-KB3151934-ENU.exe"
+#          target: public/
+
+    - name: Download .NET 3.5 targeting pack
+      uses: suisei-cn/actions-download-file@818d6b7dc8fe73f2f924b6241f2b1134ca1377d9 
+      with:
+          url: "https://download.visualstudio.microsoft.com/download/pr/b635098a-2d1d-4142-bef6-d237545123cb/2651b87007440a15209cac29634a4e45/dotnetfx35.exe"
+          target: public/
+      if: ${{ steps.exists_dotnetfx35.outputs.file_exists == 'false' }}
+      
+    - name: Install targeting pack .NET 4.6.1
+      shell: cmd
+      working-directory: public
+      run: NDP461-DevPack-KB3105179-ENU.exe /q
+
+ #   - name: Install targeting pack .NET 4.6.2
+ #     shell: cmd
+ #     working-directory: public
+ #     run: NDP462-DevPack-KB3151934-ENU.exe /q
+
+    - name: Install targeting pack .NET 3.5
+      shell: cmd
+      working-directory: public
+      run: dotnetfx35.exe /q
+
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          6.0.x
+          8.0.x
+
+    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v2
+      
+    # Restore the application to populate the obj folder with RuntimeIdentifiers
+    - name: Restore the application
+      run: msbuild ${{ env.SolutionPath }} /t:Restore /p:Configuration=${{ env.Configuration }} /p:Platform=x64 /v:m
+      env:
+        Configuration: Release
+
+    - name: Build
+      run: msbuild ${{ env.SolutionPath }} /p:Configuration=${{ env.Configuration }} /p:Platform=x64 /v:m
+      
+    # Upload the package: https://github.com/marketplace/actions/upload-a-build-artifact
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ConfuserEx.CLI
+        path: |
+          Confuser.CLI\bin\${{ env.Configuration }}\net461
+          !Confuser.CLI\bin\${{ env.Configuration }}\net461\*.pdb
+          !Confuser.CLI\bin\${{ env.Configuration }}\net461\*.xml
+        
+
+    # Upload the package: https://github.com/marketplace/actions/upload-a-build-artifact
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ConfuserEx
+        path: |
+          ConfuserEx\bin\${{ env.Configuration }}\net461
+          !ConfuserEx\bin\${{ env.Configuration }}\net461\*.pdb
+          !ConfuserEx\bin\${{ env.Configuration }}\net461\*.xml
+  
